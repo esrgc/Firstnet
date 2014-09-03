@@ -1,0 +1,55 @@
+.clib_easySlogan {
+	top: auto;	
+}
+
+.fp_formItemList .fp_formItem {
+	margin-left: 0;
+}
+
+#headerBlock #headerLeft, #headerBlock #headerMiddle, #headerBlock #headerRight {
+	width:auto; float:left;
+}
+
+#headerBlock #headerRight {
+	margin-top:23px;
+}
+
+#mdgov_mobileNavButton 
+{
+    display: none;
+}
+
+.hidden-ltie9 {
+	position:absolute;
+	left:0px;
+	top:-500px;
+	width:1px;
+	height:1px;
+	overflow:hidden;
+}
+
+#navBlock {
+	z-index: 20000;
+	position: relative;
+}
+
+#primary_content_Block 
+{
+    position: relative;
+	z-index: 0;
+}
+
+#mdgov_enterpriseNavigation {
+	display: block !important;
+}
+
+#mdgov_enterpriseNavigation ul li a.level0 {
+	display: inline-block;
+	left: 0;
+}
+hgroup h2 {
+    margin-top: 0 !important;
+}
+.searchButtonDiv {
+    font-size: 0 !important;
+}

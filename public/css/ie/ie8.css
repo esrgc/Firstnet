@@ -1,0 +1,41 @@
+#headerBlock #headerRight,
+#headerBlock #headerMiddle,
+#headerBlock #headerLeft{
+	float: left;	
+}
+
+#headerBlock #headerLeft {
+	width: 17%;
+}
+
+#headerBlock #headerMiddle {
+	white-space: nowrap;
+	height: 125px;
+}
+
+#headerBlock #headerRight {
+	width: 25%;
+	float: right;
+}
+
+#headerBlock {
+	background-image: none;	
+}
+
+#mdgov_mobileNavButton 
+{
+    display: none;
+}
+
+.hidden-ltie9 {
+	position:absolute;
+	left:0px;
+	top:-500px;
+	width:1px;
+	height:1px;
+	overflow:hidden;
+}
+
+#mdgov_enterpriseNavigation {
+	display: block !important;
+}

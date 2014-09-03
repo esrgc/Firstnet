@@ -1,0 +1,35 @@
+#mdgov_enterpriseSearch {
+	margin: 0;
+}
+
+#mdgov_searchInput {
+	width: 100%;
+	font-size:115%;
+	position: inherit;
+}
+
+#agency_branding {
+	padding-bottom: 10px;
+}
+
+@media(max-width:767px) {
+#mdgov_agencyTitle a img {
+	max-width: 100%;
+	margin: 0 0 20px 0;
+}
+
+#mdgov_searchInput {
+	font-size:180%;	
+	position: relative;
+}
+
+}
+
+@media(max-width:480px) {
+#mdgov_searchInput {
+	font-size:163%;
+}
+
+
+}
+	

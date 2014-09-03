@@ -1,0 +1,13 @@
+node_modules/
+config/
+querylog.txt
+api/querylog.txt
+.DS_Store
+
+appConfig.json
+appSettings.js
+npm-debug.log
+*.orig
+website.publishproj
+App_Data
+npm-debug.log
