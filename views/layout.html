@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -7,31 +7,31 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <!-- Step 1 : Link to MD favicon -->
-  <link rel="shortcut icon" href="egov/img/icons/favicon.ico">
+  <link rel="shortcut icon" href="../egov/img/icons/favicon.ico">
   <!-- Necessary Bootstrap.css for responsive design -->
-  <link href="egov/frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="egov/css/agency-styles.css" rel="stylesheet">
+  <link href="../egov/frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../egov/css/agency-styles.css" rel="stylesheet">
 
   <!--ESRGC Custom site styles-->
-  <link href="css/styles.css" rel="stylesheet" />
+  <link href="../css/styles.css" rel="stylesheet" />
 
   <!--[if ie 8]>
-        <link id="css_IE8" href="egov/css/ie/ie8.css" rel="stylesheet" media="screen" />
+        <link id="css_IE8" href="../egov/css/ie/ie8.css" rel="stylesheet" media="screen" />
     <![endif]-->
   <!--[if ie 7]>
-        <link id="css_IE7" href="egov/css/ie/ie7.css" rel="stylesheet" media="screen" />
+        <link id="css_IE7" href="../egov/css/ie/ie7.css" rel="stylesheet" media="screen" />
     <![endif]-->
   <!--[if lt IE 9]>
-        <script src="egov/js/html5shiv.js"></script>
+        <script src="../egov/js/html5shiv.js"></script>
     <![endif]-->
-  <script src="egov/js/jquery-1.8.2.min.js"></script>
+  <script src="../egov/js/jquery-1.8.2.min.js"></script>
 
   <!--Step 4 : Necessary .js for  Statewide nav bar script -->
-  <script type="text/javascript" src="egov/js/yui-min.js"></script>
+  <script type="text/javascript" src="../egov/js/yui-min.js"></script>
 
   <!-- Step 8: Necessary .js and .css for statewide alerts  -->
-  <script type='text/javascript' src='egov/js/MDAlertCode.js'></script>
-  
+  <script type='text/javascript' src='../egov/js/MDAlertCode.js'></script>
+
 </head>
 <body>
   <div class="container" id="MobileNav">
@@ -84,8 +84,7 @@
                   <div id="mdgov_agencyName" class="span7 clearfix">
                     <div id="mdgov_agencyTitle">
                       <!-- Step 3 : Add Agency Title and link to home page -->
-                      <a href="#">
-                        <img src="egov/img/agencyTitle-generic.png" alt="Agency Title" />
+                      <a href="/home/index">FirstNet
                       </a>
                     </div>
                   </div>
@@ -93,7 +92,7 @@
                     <div id="mdgov_agencyLogo">
                       <!-- Step 5: Optional Agency logo and link, replace with agency_logo_blank.png if none -->
                       <a href="#">
-                        <img src="img/firstnet.jpg" alt="Agency Logo" />
+                        <img src="../img/firstnet.jpg" alt="Agency Logo" />
                       </a>
                     </div>
                     <div class="mdgov_socialNav clearfix">
@@ -129,7 +128,7 @@
                         value="Search" onblur="if(this.value=='')this.value='Search';"
                         onfocus="if(this.value=='Search')this.value='';" />
                       <div class="mdgov_searchButton btn btn-primary searchButtonDiv">
-                        <input type="image" alt="Search" src="egov/img/icons/search.png" class="fillImageButton" />
+                        <input type="image" alt="Search" src="../egov/img/icons/search.png" class="fillImageButton" />
                       </div>
                     </form>
                   </div>
@@ -184,39 +183,7 @@
         <div id="primary_content_Block">
           <div id="primary_one_col" class="span12">
             <div class="mdgov_contentWrapper">
-              <div class="rslideshow">
-                <!-- Step 15 : Add Montage header, desc, images and links -->
-                <h1>Montage Title/tag line</h1>
-                <ul id="mdgov_featuredMontage" class="HideMontageImages">
-                  <li>
-                    <a href="#/">
-                      <hgroup>
-                        <h2>Slide 1 title</h2>
-                        <h3>Optional, short description slide 1</h3>
-                      </hgroup>
-                      <img src="egov/img/blackeyedsusans.jpg" alt="" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#/">
-                      <hgroup>
-                        <h2>Slide 2 title</h2>
-                        <h3>Optional, short description slide 2</h3>
-                      </hgroup>
-                      <img src="egov/img/baybridge.jpg" alt="" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#/">
-                      <hgroup>
-                        <h2>Slide 3 title</h2>
-                        <h3>Optional, short description slide 3</h3>
-                      </hgroup>
-                      <img src="egov/img/harbor.jpg" alt="" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <%- body %>             
             </div>
           </div>
         </div>
@@ -246,7 +213,7 @@
             <div id="secondary_middle_col_lt">
               <a href="#/">
                 <div class="secondary_image_block">
-                  <img src="egov/img/sec_img.png" alt="Image Title">
+                  <img src="../egov/img/sec_img.png" alt="Image Title">
                 </div>
                 <h3>Subhead</h3>
               </a>
@@ -257,7 +224,7 @@
             <div id="secondary_middle_col_rt">
               <a href="#/">
                 <div class="secondary_image_block">
-                  <img src="egov/img/sec_img.png" alt="Image Title">
+                  <img src="../egov/img/sec_img.png" alt="Image Title">
                 </div>
                 <h3>Subhead</h3>
               </a>
@@ -265,10 +232,10 @@
             </div>
           </div>
           <div class="span2">
-            <div id="Div1">
+            <div id="">
               <a href="#/">
                 <div class="secondary_image_block">
-                  <img src="egov/img/sec_img.png" alt="Image Title">
+                  <img src="../egov/img/sec_img.png" alt="Image Title">
                 </div>
                 <h3>Subhead</h3>
               </a>
@@ -279,83 +246,61 @@
       </div>
       <!--end first secondary content area-->
       <!--begin second secondary content area-->
-      <div class="row-fluid">
-        <div id="Div2" class="clearfix">
-          <div class="span4 clearfix">
-            <!-- Step 11 : Governors image and link -->
-            <div id="governorBlock">
-              <a href="http://governor.maryland.gov/announcement.html">
-                <img src="http://governor.maryland.gov/images/governor_agy.jpg" alt="Governor O'Malley and Lt. Governor Brown"></a>
-            </div>
-          </div>
-          <div class="span4">
-            <div id="Div3">
-              <div class="sec_item_img">
-                <!--<img src="egov/img/sec_img.png" alt="Image Title">-->
-                <img class="logo" src="img/doit_logo.png" alt="DoIT" />
-              </div>
-              <div>
-                <h3><a href="#/">GIO Office</a></h3>
-                Dedicated to improving the quality of GIS data and services in Maryland.
-              </div>
-            </div>
-          </div>
-          <div class="span4">
-            <div id="secondary_right_col">
-              <div class="sec_item_img">
-                <img src="egov/img/sec_img.png" alt="Image Title">
-              </div>
-              <div>
-                <h3><a href="#/">Subhead</a></h3>
-                Subtext - this could be a single line, or a paragraph of text...
-              </div>
-            </div>
+      <div class="row-fluid content-block">
+        <div class="span4">
+          <div id="governorBlock">
+            <a href="http://governor.maryland.gov/announcement.html">
+              <img src="http://governor.maryland.gov/images/governor_agy.jpg" alt="Governor O'Malley and Lt. Governor Brown"></a>
           </div>
         </div>
+        <div class="span8 col-content">
+
+        </div>
       </div>
-      <div class="row-fluid">
-        <div id="footer_block" class="clearfix">
-          <div class="span9">
-            <div id="footer_left">
-              <div class="cl_base_hNav footerLinks">
-                <!-- Step 12: Add agency footer links -->
-                <ul>
-                  <li><a href="http://www.doit.state.md.us/phonebook">Contact Us</a></li>
-                  <li><a href="#/">Privacy</a></li>
-                  <li><a href="#/">Accessibility</a></li>
-                </ul>
-              </div>
-              <!-- Step 13 : Add agency address and phone -->
-              <p>45 Calvert Street, Annapolis, MD 21401</p>
-              <p>(877) 634-6361</p>
+    </div>
+    <div class="row-fluid">
+      <div id="footer_block" class="clearfix">
+        <div class="span9">
+          <div id="footer_left">
+            <div class="cl_base_hNav footerLinks">
+              <!-- Step 12: Add agency footer links -->
+              <ul>
+                <li><a href="http://www.doit.state.md.us/phonebook">Contact Us</a></li>
+                <li><a href="#/">Privacy</a></li>
+                <li><a href="#/">Accessibility</a></li>
+              </ul>
             </div>
+            <!-- Step 13 : Add agency address and phone -->
+            <p>45 Calvert Street, Annapolis, MD 21401</p>
+            <p>(877) 634-6361</p>
           </div>
-          <div class="span3">
-            <div id="footer_right" class="clearfix">
-              <div class="mdgov_socialNav">
-                <!-- Step 6 : configure footer social media icons and links -->
-                <ul class="cl_base_hNav cl_socialNav">
-                  <li><a href="#" class="sm-facebook" title="Facebook">Facebook</a></li>
-                  <li><a href="#" class="sm-twitter" title="Twitter">Twitter</a></li>
-                  <!-- <li><a href="#" class="sm-googleplus" title="Google+">Google Plus</a></li>-->
-                  <li><a href="#" class="sm-youtube" title="YouTube">YouTube</a></li>
-                  <li><a href="#" class="sm-flickr" title="Flickr">Flickr</a></li>
-                  <li>
-                    <a href="http://www.maryland.gov/pages/social_media.aspx" class="sm-all" title="MD Social Media Directory">
-                      MD Social Media Directory</a>
-                  </li>
-                </ul>
-                <!--if no agy social media,replace above UL with code below-->
-                <!--<ul class="cl_base_hNav cl_socialNavDirectory">
+        </div>
+        <div class="span3">
+          <div id="footer_right" class="clearfix">
+            <div class="mdgov_socialNav">
+              <!-- Step 6 : configure footer social media icons and links -->
+              <ul class="cl_base_hNav cl_socialNav">
+                <li><a href="#" class="sm-facebook" title="Facebook">Facebook</a></li>
+                <li><a href="#" class="sm-twitter" title="Twitter">Twitter</a></li>
+                <!-- <li><a href="#" class="sm-googleplus" title="Google+">Google Plus</a></li>-->
+                <li><a href="#" class="sm-youtube" title="YouTube">YouTube</a></li>
+                <li><a href="#" class="sm-flickr" title="Flickr">Flickr</a></li>
+                <li>
+                  <a href="http://www.maryland.gov/pages/social_media.aspx" class="sm-all" title="MD Social Media Directory">
+                    MD Social Media Directory</a>
+                </li>
+              </ul>
+              <!--if no agy social media,replace above UL with code below-->
+              <!--<ul class="cl_base_hNav cl_socialNavDirectory">
                             		<li><a href="http://www.maryland.gov/pages/social_media.aspx" class="sm-directory" title="MD Social Media Directory">MD Social Media Directory</a></li>
                         		</ul>-->
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <script src="egov/js/base.js"></script>
+  </div>
+  <script src="../egov/js/base.js"></script>
 </body>
 </html>

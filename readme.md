@@ -2,4 +2,4 @@
 
 Current version 0.0.1
 
-remake of [https://mdinterop-public.sharepoint.com/process]
+remake of [https://mdinterop-public.sharepoint.com]

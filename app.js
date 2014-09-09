@@ -1,9 +1,21 @@
-﻿var express = require('express');
+﻿/*
+Author: Tu Hoang
+ESRGC 2014
+
+Firstnet application
+
+*/
+
+var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var layouts = require('express-ejs-layouts');
+//var partials = require('express-partials');
+//routes 
+var registerRoutes = require('./lib').Routes.registerRoutes;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -12,7 +24,8 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
 app.use(favicon(__dirname + '/public/egov/img/icons/favicon.ico'));
@@ -24,6 +37,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+app.set('layout', 'layout.html');//default to layout
+app.set("layout extractScripts", true);
+//set express-ejs-layout middleware
+//app.use(partials);
+app.use(layouts);
+
+//routes configurations
+registerRoutes(app, 'home/index');//default to /index.html when root url is requested
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
