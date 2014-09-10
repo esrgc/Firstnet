@@ -1,0 +1,27 @@
+@media (max-width: 767px) {
+  #mdgov_agencyTitle a {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 50px;
+  }
+  img.logo {
+    max-width: 100px;
+  }
+  .content-block {
+    background-color: #ffffff;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+  }
+  .col-content {
+    margin: 20px 0 0 20px;
+    padding: 10px 20px;
+    background: #ffffff;
+    border: none;
+  }
+  .secondary-content-block {
+    background: #eeeeee;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+  }
+}

@@ -17,3 +17,11 @@ img.logo {
   background: #ffffff;
   border-left: 1px solid #ccc;
 }
+.secondary-content-block {
+  background: #eeeeee;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+}
+.governor-block {
+  margin: 20px 0 20px 20px;
+}
