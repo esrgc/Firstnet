@@ -27,6 +27,12 @@ var homeController = Class.define({
         //render view
         res.render('home/index', { title: 'Oklahoma Workforce Dashboard' });
       }
+    },
+    about: {
+      handler: function(req, res) {
+        //render view
+        res.render('home/about');
+      }
     }
   }
   //,

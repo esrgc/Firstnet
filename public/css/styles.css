@@ -16,6 +16,7 @@ img.logo {
   padding: 10px 20px;
   background: #ffffff;
   border-left: 1px solid #ccc;
+  min-height: 100%;
 }
 .secondary-content-block {
   background: #eeeeee;
