@@ -25,13 +25,43 @@ var homeController = Class.define({
     index: {
       handler: function(req, res) {
         //render view
-        res.render('home/index', { title: 'Oklahoma Workforce Dashboard' });
+        res.render('home/index');
       }
     },
     about: {
       handler: function(req, res) {
         //render view
         res.render('home/about');
+      }
+    },
+    governance: {
+      handler: function(req, res) {
+        //render view
+        res.render('home/governance');
+      }
+    },
+    process: {
+      handler: function(req, res) {
+        //render view
+        res.render('home/process');
+      }
+    },
+    library: {
+      handler: function(req, res) {
+        //render view
+        res.render('home/library');
+      }
+    },
+    news: {
+      handler: function(req, res) {
+        //render view
+        res.render('home/news');
+      }
+    },
+    faq: {
+      handler: function(req, res) {
+        //render view
+        res.render('home/faq');
       }
     }
   }

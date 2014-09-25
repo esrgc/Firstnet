@@ -6,6 +6,15 @@
 img.logo {
   max-width: 100px;
 }
+img#consultation {
+  max-width: 250px;
+  padding: 0 10px;
+}
+img#interoperability {
+  max-width: 350px;
+  padding: 0 5px;
+  background: black;
+}
 .content-block {
   background-color: #ffffff;
   width: 100%;
