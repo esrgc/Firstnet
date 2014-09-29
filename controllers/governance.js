@@ -33,7 +33,36 @@ var governanceController = Class.define({
         //render view
         res.render('governance/wagin')
       }
-
+    },
+    cmarc: {
+      handler: function(req, res) {
+        //render view
+        res.render('governance/cmarc')
+      }
+    },
+    esca: {
+      handler: function(req, res) {
+        //render view
+        res.render('governance/esca')
+      }
+    },
+    ncr: {
+      handler: function(req, res) {
+        //render view
+        res.render('governance/ncr')
+      }
+    },
+    siec: {
+      handler: function(req, res) {
+        //render view
+        res.render('governance/siec')
+      }
+    },
+    smiec: {
+      handler: function(req, res) {
+        //render view
+        res.render('governance/smiec')
+      }
     }
   }
   //,
