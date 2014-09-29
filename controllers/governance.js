@@ -2,19 +2,19 @@
 Author: Tu Hoang
 ESRGC 2014
 
-Home controller class 
+governance controller class 
 
-provides home action methods
+provides governance action methods
 requires base controller (base.js)
 */
 var Class = require('../lib').Class;
 var BaseController = require('../lib').BaseController;
 
-var homeController = Class.define({
+var governanceController = Class.define({
   extend: BaseController,
-  _className: 'HomeController',
+  _className: 'GovernanceController',
   //mountPath: '', //this is optional for route area, custom route...ect
-  name: 'home',
+  name: 'governance',
   initialize: function() {
     this.extend.prototype.initialize.apply(this, arguments);
     //console.log(this.router);
@@ -25,8 +25,15 @@ var homeController = Class.define({
     index: {
       handler: function(req, res) {
         //render view
-        res.render('home/index');
+        res.render('governance/index');
       }
+    },
+    wagin: {
+      handler: function(req, res) {
+        //render view
+        res.render('governance/wagin')
+      }
+
     }
   }
   //,
@@ -35,4 +42,4 @@ var homeController = Class.define({
 
 });
 
-module.exports = homeController;
+module.exports = governanceController;
