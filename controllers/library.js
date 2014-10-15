@@ -33,7 +33,7 @@ var libraryController = Class.define({
         for (var i in dirs) {
           var dir = dirPath + '/' + dirs[i];
           var dirName = dirs[i];
-          var urlPath = '/documents/' + dirName;
+          var urlPath = '../documents/' + dirName;
           console.log(dir);
           if (fs.statSync(dir).isDirectory()) {
             
