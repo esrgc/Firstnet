@@ -9,6 +9,7 @@ requires base controller (base.js)
 */
 var Class = require('../lib').Class;
 var BaseController = require('../lib').BaseController;
+var fs = require('fs');
 
 var libraryController = Class.define({
   extend: BaseController,
@@ -24,8 +25,31 @@ var libraryController = Class.define({
     //action
     index: {
       handler: function(req, res) {
+        var library = {};
+        var dirPath = 'public/documents';
+        //console.log(dirPath);
+        var dirs = fs.readdirSync(dirPath);//read documents folders for sub-folders
+        //loop through folders and read documents
+        for (var i in dirs) {
+          var dir = dirPath + '/' + dirs[i];
+          var dirName = dirs[i];
+          var urlPath = '/documents/' + dirName;
+          console.log(dir);
+          if (fs.statSync(dir).isDirectory()) {
+            
+            var files = fs.readdirSync(dir);
+            library[dirName] = [];
+            for (x in files) {
+              library[dirName].push({
+                name: files[x],
+                url: urlPath + '/' + files[x]
+              });
+            }
+          }
+        }
+        console.log(library);
         //render view
-        res.render('library/index');
+        res.render('library/index', { model: library });
       }
     }
   }

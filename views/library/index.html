@@ -1,25 +1,29 @@
 ﻿<%-contentFor('body')%>
 <div class="row-fluid">
-  <div class="span3">
+  <div class="span9">
     <h3>Documents</h3>
-    <section id="subNav1" class="primary_left_col_list">
+    <% for(var i in model) { 
+      var folder = model[i];
+    %>
+      <section id="subNav1" class="primary_left_col_list">
+        <!-- Step 14: Quick Nav menu 1 -->
+        <header>
+          <h5 data-target="subNav1"><%= i %></h5>
+        </header>
+        <div class="subNavWrapper">
+          <ul class="cl_iconNav">
+            <% for(var x in folder) {
+              var file = folder[x];
+            %>
+              <li><a href="<%= file.url %>"><%= file.name %></a></li>  
+            <% } %>         
+          </ul>
+        </div>
+      </section>
+    <% } %> 
+   <!-- <section id="Section1" class="primary_left_col_list">
       <!-- Step 14: Quick Nav menu 1 -->
-      <header>
-        <h5 data-target="subNav1">Handouts & One-pageers</h5>
-      </header>
-      <div class="subNavWrapper">
-        <ul class="cl_iconNav">
-          <li><a href="#whatIsFirstnet">EMS Factsheet</a></li>
-          <li><a href="#whyNeedFirstNet">Fire Services Factsheet</a></li>
-          <li><a href="#aDedicatedNetwork">FiRSTNet By The Numbers</a></li>
-          <li><a href="#howCanIGetInvolved">Law Enforcement FactSheet</a></li>
-          <li><a href="#howCanIGetInvolved">LMR Factsheet</a></li>
-        </ul>
-      </div>
-    </section>
-    <section id="Section1" class="primary_left_col_list">
-      <!-- Step 14: Quick Nav menu 1 -->
-      <header>
+    <!-- <header>
         <h5 data-target="subNav1">Initial Consultation</h5>
       </header>
       <div class="subNavWrapper">
@@ -29,10 +33,17 @@
           <li><a href="#aDedicatedNetwork">MD Initial Consultation Lessons Learned</a></li>
         </ul>
       </div>
-    </section>
+    </section>-->
   </div>
-  <div class="span9">
+  <!--<div class="span9">
     <div class="col-content">
+      <ul>
+      <% for(var i in model) { %>
+        <li><a href="#"><%= i %></a></li>  
+      <% 
+        }
+      %> 
+      </ul>
     </div>
-  </div>
+  </div>-->
 </div>
