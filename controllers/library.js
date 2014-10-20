@@ -19,7 +19,6 @@ var libraryController = Class.define({
   initialize: function() {
     this.extend.prototype.initialize.apply(this, arguments);
     //console.log(this.router);
-
   },
   get: {
     //action
@@ -28,13 +27,13 @@ var libraryController = Class.define({
         var library = {};
         var dirPath = 'public/documents';
         //console.log(dirPath);
-        var dirs = fs.readdirSync(dirPath);//read documents folders for sub-folders
+        var dirs = fs.readdirSync(dirPath);//read sub-folders in "documents folder 
         //loop through folders and read documents
         for (var i in dirs) {
           var dir = dirPath + '/' + dirs[i];
           var dirName = dirs[i];
           var urlPath = '../documents/' + dirName;
-          console.log(dir);
+          //console.log(dir);
           if (fs.statSync(dir).isDirectory()) {
             
             var files = fs.readdirSync(dir);
