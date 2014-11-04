@@ -729,7 +729,7 @@ a:hover, a:focus {
     padding: 0;
 }
 hgroup h2, hgroup h3 {
-    font-size:16px !important;
+    font-size: 20px !important;
     color:#000;
     font-weight: bold;
     margin:-10px 0 7px 0 !important;
