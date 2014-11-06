@@ -46,3 +46,15 @@ img.in-text {
   background-position: top center;
   background-size: 100%;
 }
+.rslideshow {
+  margin-bottom: 30px;
+}
+.rslideshow h1 {
+  font-size: 28px;
+}
+#agency-logoes {
+  text-align: center;
+}
+#agency-logoes li {
+  margin-right: 40px;
+}
