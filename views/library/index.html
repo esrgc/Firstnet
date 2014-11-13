@@ -1,6 +1,6 @@
 ﻿<%-contentFor('body')%>
 <div class="row-fluid">
-  <div class="span9">
+  <div class="span4">
     <h3>Documents</h3>
     <% for(var i in model) { 
       var folder = model[i];
@@ -15,7 +15,7 @@
             <% for(var x in folder) {
               var file = folder[x];
             %>
-              <li><a href="<%= file.url %>"><%= file.name %></a></li>  
+              <li><a href="<%= file.url %>"><%= file.name %></a></li>
             <% } %>         
           </ul>
         </div>
@@ -35,15 +35,27 @@
       </div>
     </section>-->
   </div>
-  <!--<div class="span9">
+  <div class="span8">
     <div class="col-content">
-      <ul>
-      <% for(var i in model) { %>
-        <li><a href="#"><%= i %></a></li>  
-      <% 
-        }
-      %> 
+      <ul class="list unstyled">
+        <li>
+          <iframe width="560" height="315" src="//www.youtube.com/embed/owAofzkOrN4" frameborder="0" allowfullscreen>
+          </iframe>
+        </li>
+        <li>
+          <iframe width="560" height="315" src="//www.youtube.com/embed/ERX7BiCd2uU" frameborder="0" allowfullscreen>
+          </iframe>
+        </li>
+        <li>
+          <iframe width="560" height="315" src="//www.youtube.com/embed/K5zyPHqljs0" frameborder="0" allowfullscreen></iframe>
+        </li>
+        <li>
+          <iframe width="560" height="315" src="//www.youtube.com/embed/jdj-tU5D3oA" frameborder="0" allowfullscreen></iframe>
+        </li>
+        <li>
+          <iframe width="560" height="315" src="//www.youtube.com/embed/M4XPa1zx8Ow" frameborder="0" allowfullscreen></iframe>
+        </li>
       </ul>
     </div>
-  </div>-->
+  </div>
 </div>
