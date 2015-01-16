@@ -1,4 +1,3 @@
-﻿
 /*
 Author: Tu hoang
 
@@ -13,5 +12,5 @@ main node server configurations
 
 var app = require('./app');
 
-app.listen(3011);
-console.log('Server listening on port 3011');
+app.listen(process.env.PORT);
+console.log('Server listening on port ' + process.env.PORT);

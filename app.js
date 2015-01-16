@@ -1,4 +1,4 @@
-﻿/*
+/*
 Author: Tu Hoang
 ESRGC 2014
 
