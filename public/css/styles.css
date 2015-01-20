@@ -70,3 +70,7 @@ img.in-text {
     position: relative;
     width: 80%;
 }
+
+h3 {
+  font-size: 1.2em;
+}
