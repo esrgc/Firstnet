@@ -62,15 +62,14 @@ img.in-text {
 /*Custom Styles*/
 /*Content Cards*/
 .contentCard {
-    background-color: #fff;
-    box-shadow: 4px 5px 10px 0 #223;
-    margin: 4rem auto;
-    max-width: 800px;
-    padding: 2rem;
-    position: relative;
-    width: 80%;
+  background-color: #fff;
+  box-shadow: 4px 5px 10px 0 #223;
+  margin: 4rem auto;
+  max-width: 800px;
+  padding: 2rem;
+  position: relative;
+  width: 80%;
 }
-
 h3 {
   font-size: 1.2em;
 }
