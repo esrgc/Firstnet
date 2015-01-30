@@ -4,9 +4,31 @@
     <h3>Documents</h3>
     <% for(var i in model) { 
       var folder = model[i];
+      var id = i.replace(/ /g, '_');
+      console.log(id);
     %>
-      <section id="subNav1" class="primary_left_col_list">
-        <!-- Step 14: Quick Nav menu 1 -->
+      <div class="accordion" id="accordion_<%= id %>">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_<%= id %>" href="#collapse_<%= id %>">
+            <%= i %>
+          </a>
+        </div>
+        <div id="collapse_<%= id %>" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <ul class="cl_iconNav">
+            <% for(var x in folder) {
+              var file = folder[x];
+            %>
+              <li><a href="<%= file.url %>"><%= file.name %></a></li>
+            <% } %>         
+          </ul>
+          </div>
+        </div>
+      </div>
+        </div>
+
+     <!-- <section id="subNav1" class="primary_left_col_list">
         <header>
           <h5 data-target="subNav1"><%= i %></h5>
         </header>
@@ -19,7 +41,9 @@
             <% } %>         
           </ul>
         </div>
-      </section>
+
+
+      </section>-->
     <% } %> 
    <!-- <section id="Section1" class="primary_left_col_list">
       <!-- Step 14: Quick Nav menu 1 -->
@@ -34,26 +58,34 @@
         </ul>
       </div>
     </section>-->
-  </div>
-  <div class="span8">
+</div>
+<div class="span8">
     <div class="col-content">
       <ul class="list unstyled">
         <li>
-          <iframe width="560" height="315" src="//www.youtube.com/embed/owAofzkOrN4" frameborder="0" allowfullscreen>
+          <iframe width="560" height="315" src="//www.youtube.com/embed/owAofzkOrN4" frameborder="0"
+allowfullscreen>
           </iframe>
         </li>
         <li>
-          <iframe width="560" height="315" src="//www.youtube.com/embed/ERX7BiCd2uU" frameborder="0" allowfullscreen>
+          <iframe width="560" height="315" src="//www.youtube.com/embed/ERX7BiCd2uU" frameborder="0"
+allowfullscreen>
           </iframe>
         </li>
         <li>
-          <iframe width="560" height="315" src="//www.youtube.com/embed/K5zyPHqljs0" frameborder="0" allowfullscreen></iframe>
+          <iframe width="560" height="315" src="//www.youtube.com/embed/K5zyPHqljs0" frameborder="0"
+allowfullscreen>
+          </iframe>
         </li>
         <li>
-          <iframe width="560" height="315" src="//www.youtube.com/embed/jdj-tU5D3oA" frameborder="0" allowfullscreen></iframe>
+          <iframe width="560" height="315" src="//www.youtube.com/embed/jdj-tU5D3oA" frameborder="0"
+allowfullscreen>
+          </iframe>
         </li>
         <li>
-          <iframe width="560" height="315" src="//www.youtube.com/embed/M4XPa1zx8Ow" frameborder="0" allowfullscreen></iframe>
+          <iframe width="560" height="315" src="//www.youtube.com/embed/M4XPa1zx8Ow" frameborder="0"
+allowfullscreen>
+          </iframe>
         </li>
       </ul>
     </div>
