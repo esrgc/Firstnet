@@ -7,8 +7,8 @@ Home controller class
 provides home action methods
 requires base controller (base.js)
 */
-var Class = require('../lib').Class;
-var BaseController = require('../lib').BaseController;
+var Class = require('easynodemvc').Class;
+var BaseController = require('easynodemvc').BaseController;
 
 var homeController = Class.define({
   extend: BaseController,

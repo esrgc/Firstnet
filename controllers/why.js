@@ -7,8 +7,8 @@ why controller class
 provides why action methods
 requires base controller (base.js)
 */
-var Class = require('../lib').Class;
-var BaseController = require('../lib').BaseController;
+var Class = require('easynodemvc').Class;
+var BaseController = require('easynodemvc').BaseController;
 
 var aboutController = Class.define({
   extend: BaseController,

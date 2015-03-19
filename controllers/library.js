@@ -7,8 +7,8 @@ library controller class
 provides library action methods
 requires base controller (base.js)
 */
-var Class = require('../lib').Class;
-var BaseController = require('../lib').BaseController;
+var Class = require('easynodemvc').Class;
+var BaseController = require('easynodemvc').BaseController;
 var fs = require('fs');
 
 var libraryController = Class.define({

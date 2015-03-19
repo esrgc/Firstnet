@@ -15,7 +15,7 @@ var bodyParser = require('body-parser');
 var layouts = require('express-ejs-layouts');
 //var partials = require('express-partials');
 //routes 
-var registerRoutes = require('./lib').Routes.registerRoutes;
+var registerRoutes = require('easynodemvc').Routes.registerRoutes;
 
 var app = express();
 

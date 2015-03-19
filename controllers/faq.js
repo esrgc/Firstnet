@@ -7,8 +7,8 @@ faq controller class
 provides faq action methods
 requires base controller (base.js)
 */
-var Class = require('../lib').Class;
-var BaseController = require('../lib').BaseController;
+var Class = require('easynodemvc').Class;
+var BaseController = require('easynodemvc').BaseController;
 
 var faqController = Class.define({
   extend: BaseController,
