@@ -7,9 +7,20 @@
         <div class="contentCard">
          
         </div>
-        <div class="contentCard">
-        </div>
+       
       </div>
     </div>
   </div>
 </div>
+
+<!--Scripts-->
+<script src="../js/lib/underscore/underscore.js"></script>
+<script src="../js/lib/backbone/backbone.js"></script>
+<script src="../js/lib/backbone-addon/application.js"></script>
+<script src="../js/dist/Firstnet-event.js"></script>
+<script type="text/javascript">
+  $(function() {
+    if (typeof startup == 'function')
+      startup();
+  });
+</script>

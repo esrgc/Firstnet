@@ -20,7 +20,10 @@
      
       multi: {
         files: {
-      
+          'public/js/dist/<%= pkg.name %>-event.js': [
+                'public/js/event/*.js',
+                'public/js/event/**/*.js'
+          ]
         }
       }
     },
@@ -37,7 +40,7 @@
     watch: {
       js: {
         files: [
-          'public/js/*.js'         
+          'public/js/event/**/*.js'
         ],
         tasks: ['concat']
       },

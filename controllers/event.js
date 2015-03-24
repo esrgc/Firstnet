@@ -19,6 +19,8 @@ var eventController = Class.define({
 
   },
   get: {
+    params: [],
+    middleware: [],
     index: {
       handler: function(req, res) {
         res.render('event/index');
