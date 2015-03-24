@@ -1,4 +1,11 @@
-﻿module.exports = function(grunt) {
+﻿/*
+Grunt file 
+
+*/
+
+
+
+module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
@@ -9,7 +16,7 @@
       },
       dist: {
         files: {
-          'public/css/<%= pkg.name %>.css': ['public/css/style.less']
+          'public/css/<%= pkg.name %>.css': ['public/css/styles.less']
         }
       }
     },
@@ -21,6 +28,7 @@
       multi: {
         files: {
           'public/js/dist/<%= pkg.name %>-event.js': [
+                'public/js/util/class.js',
                 'public/js/event/*.js',
                 'public/js/event/**/*.js'
           ]

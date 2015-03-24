@@ -26,11 +26,11 @@ var startup = app.startup = function() {
     launch: function() {
       //custom code on app launch event
 
-      //for underscore template custom dilimiters
-      //_.templateSettings = {
-      //  evaluate: /\{\[([\s\S]+?)\]\}/g,
-      //  interpolate: /\{\{([\s\S]+?)\}\}/g
-      //};
+      //for underscore template custom dilimiters like mustache
+      _.templateSettings = {
+        evaluate: /\{\[([\s\S]+?)\]\}/g,
+        interpolate: /\{\{([\s\S]+?)\}\}/g
+      };
       ////force ajax calls not to cache requests
       //$.ajaxSetup({ cache: false });
       console.log('Launch function run.');
