@@ -142,19 +142,28 @@ var Calendar = define({
     }
     //generate body 
     var day = 1;
+    var lastMonth = (this.month - 1) < 0 ? 11 : this.month - 1;//get previous month
+    lastMonthDay = daysInMonth[lastMonth] ;//previous month day length is the last day of previous month
+    nextMonthDay = 1;
     for (var i = 0; i < 9; i++) { //weeks
       bodyHtml += '<tr>';
       for (var j = 0; j < 7; j++) {//days in week
         if (day <= monthLength && (j >= startingDay || i > 0)) {
           //fill day in and assign id to that date (for example march 21st id is "3-21")
-          if (day == todayDate.getDate())
+          if (day == todayDate.getDate() && todayDate.getMonth() == this.month && todayDate.getFullYear() == this.year)
             bodyHtml += '<td class="today" id="' + (this.month + 1) + '-' + day + '">' + day + '<div class="day-event"></div></td>';
           else
             bodyHtml += '<td id="' + (this.month + 1) + '-' + day + '">' + day + '<div class="day-event"></div></td>';
           day++;
         }
-        else
-          bodyHtml += '<td></td>';
+        else {
+          if (j < startingDay && i == 0) {
+            var ld = lastMonthDay - (startingDay - j -1) ;            
+            bodyHtml += '<td class="gray-out">' + ld + '</td>';
+          }
+          else 
+            bodyHtml += '<td class="gray-out">' + nextMonthDay++ + '</td>';
+        }
       }
       bodyHtml += '</tr>';
       if (day > monthLength)
@@ -162,9 +171,9 @@ var Calendar = define({
     }
     var html = [
       '<h4>',
-        monthLabels[todayDate.getMonth()] + ', ' + todayDate.getFullYear(),
+        monthName + ', ' + this.year,
       '</h4>',
-      '<table class="calendar-table table  table-bordered table-striped">',
+      '<table class="calendar-table table  table-bordered">',
        '<thead>',
           '<tr>',
             headerHtml,
@@ -177,6 +186,28 @@ var Calendar = define({
     ].join('');
 
     return html;
+  },
+  setMonth: function(month) {
+    if (typeof month == 'undefined') return;//does nothing if undefined
+    if (isNaN(month) || month == null) {
+      console.log('Month must be a valid month number');
+      return;
+    }
+    this.month = month;
+  },
+  incrementMonth: function() {
+    this.month += 1;
+    if (this.month > 11) {
+      this.year++;
+      this.month = 0;
+    }
+  },
+  decrementMonth: function() {
+    this.month -= 1;
+    if (this.month < 0) {
+      this.year--;
+      this.month = 11;
+    }
   }
 
 });
@@ -192,7 +223,7 @@ start up function
 
 var startup = app.startup = function() {
   console.log('Initilizing application...');
-
+  
   //start application
   app.application({
     name: 'Event Calendar',
@@ -206,8 +237,7 @@ var startup = app.startup = function() {
       'Main'
     ],
     launch: function() {
-      //custom code on app launch event
-
+      //custom code on app launch event    
       //for underscore template custom dilimiters like mustache
       _.templateSettings = {
         evaluate: /\{\[([\s\S]+?)\]\}/g,
@@ -215,7 +245,7 @@ var startup = app.startup = function() {
       };
       ////force ajax calls not to cache requests
       //$.ajaxSetup({ cache: false });
-      console.log('Launch function run.');
+      console.log('Launch(): Application initilization completed. ');
     }
   });
 };
@@ -252,15 +282,31 @@ app.View.Calendar = Backbone.View.extend({
   name: 'EventsCalendar',
   el: '#event-calendar',
   id: '#event-calendar',
-  intialize: function() {
-    
+  events: {
+    'click a#prev-month': 'prevMonth',
+    'click a#next-month': 'nextMonth'
+
+  },
+  initialize: function() {
+    this.calendar = new Calendar();
   },
   render: function(viewData) {
+    var calHtml = this.calendar.generateHtml();
+    //get template
     var template = _.template($('#calendar-tpl').html());
-    
-    this.$el.html(template);
+    //insert compiled html to element
+    this.$el.html(template({ html: calHtml, name: 'test' }));
+  },
+  nextMonth: function() {
+    this.calendar.incrementMonth();
+    console.log(this.calendar.month);
+    this.render();//re-render calendar
+    return false;
+  },
+  prevMonth: function() {
+    this.calendar.decrementMonth();
+    console.log(this.calendar.month);
+    this.render();//re-render calendar
+    return false;
   }
-
-
-
 });

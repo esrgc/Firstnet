@@ -67,13 +67,15 @@ img {
 
 .rslideshow {
     margin-bottom: 30px;
+
     h1 {
         font-size: 28px;
     }
 }
 
-#agency-logos{
+#agency-logos {
     text-align: center;
+
     li {
         margin-right: 40px;
         margin-bottom: 10px;
@@ -92,19 +94,30 @@ img {
 }
 
 h3 {
-  font-size: 1.2em;
+    font-size: 1.2em;
 }
 
 /*Calendar styles*/
-div.calendar{
+div.calendar {
     margin-top: 20px;
+
     th {
         text-align: center;
     }
-    td{
+
+    td {
         text-align: right;
+        height: 80px;
+        div.day-event{
+            background: #efebeb;
+            height: 70px;
+        }
+        &.gray-out{
+            color: #cfc8c8;
+        }
     }
-    .today{
+
+    .today {
         border: 1px solid #f00;
     }
 }

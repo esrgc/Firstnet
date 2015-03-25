@@ -82,6 +82,14 @@ div.calendar th {
 }
 div.calendar td {
   text-align: right;
+  height: 80px;
+}
+div.calendar td div.day-event {
+  background: #efebeb;
+  height: 70px;
+}
+div.calendar td.gray-out {
+  color: #cfc8c8;
 }
 div.calendar .today {
   border: 1px solid #f00;

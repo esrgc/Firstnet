@@ -1,13 +1,10 @@
 ﻿<script type="text/template" id="calendar-tpl">
-  {[
-    var calendar = new Calendar();
-    var html = calendar.generateHtml();
-  ]}
+
   <div class="wrapper">
     <div class="controls pull-right">
-      <a  href="#">Prev</a>
-      &nbsp;&nbsp;
-      <a href="#">Next</a>
+      <a id="prev-month" href="#">Prev</a>
+      &nbsp; | &nbsp;
+      <a id="next-month" href="#">Next</a>
     </div>
     <div class="calendar">
       {{ html }} 

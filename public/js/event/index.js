@@ -10,7 +10,7 @@ start up function
 
 var startup = app.startup = function() {
   console.log('Initilizing application...');
-
+  
   //start application
   app.application({
     name: 'Event Calendar',
@@ -24,8 +24,7 @@ var startup = app.startup = function() {
       'Main'
     ],
     launch: function() {
-      //custom code on app launch event
-
+      //custom code on app launch event    
       //for underscore template custom dilimiters like mustache
       _.templateSettings = {
         evaluate: /\{\[([\s\S]+?)\]\}/g,
@@ -33,7 +32,7 @@ var startup = app.startup = function() {
       };
       ////force ajax calls not to cache requests
       //$.ajaxSetup({ cache: false });
-      console.log('Launch function run.');
+      console.log('Launch(): Application initilization completed. ');
     }
   });
 };
