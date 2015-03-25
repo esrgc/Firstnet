@@ -74,3 +74,15 @@ h3 {
   font-size: 1.2em;
 }
 /*Calendar styles*/
+div.calendar {
+  margin-top: 20px;
+}
+div.calendar th {
+  text-align: center;
+}
+div.calendar td {
+  text-align: right;
+}
+div.calendar .today {
+  border: 1px solid #f00;
+}

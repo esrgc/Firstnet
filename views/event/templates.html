@@ -1,3 +1,16 @@
-﻿<script type="text/template" id="calendar">
-  
+﻿<script type="text/template" id="calendar-tpl">
+  {[
+    var calendar = new Calendar();
+    var html = calendar.generateHtml();
+  ]}
+  <div class="wrapper">
+    <div class="controls pull-right">
+      <a  href="#">Prev</a>
+      &nbsp;&nbsp;
+      <a href="#">Next</a>
+    </div>
+    <div class="calendar">
+      {{ html }} 
+    </div>
+  </div>
 </script>

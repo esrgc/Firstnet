@@ -28,7 +28,7 @@ module.exports = function(grunt) {
       multi: {
         files: {
           'public/js/dist/<%= pkg.name %>-event.js': [
-                'public/js/util/class.js',
+                'public/js/util/*.js',
                 'public/js/event/*.js',
                 'public/js/event/**/*.js'
           ]
@@ -48,6 +48,8 @@ module.exports = function(grunt) {
     watch: {
       js: {
         files: [
+          'public/js/util/*.js',
+          'public/js/event/*.js',
           'public/js/event/**/*.js'
         ],
         tasks: ['concat']

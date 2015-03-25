@@ -15,7 +15,7 @@ var startup = app.startup = function() {
   app.application({
     name: 'Event Calendar',
     views: [
-
+      'Calendar'
     ],
     collections: [
 

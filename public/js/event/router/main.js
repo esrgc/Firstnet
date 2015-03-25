@@ -14,6 +14,8 @@ app.Router.Main = Backbone.Router.extend({
   },
   startup: function() {
     console.log('starting up route initiated...');
+    var calendarView = app.getView('EventsCalendar');
+    calendarView.render();
   }
 
 });
