@@ -77,19 +77,21 @@ h3 {
 div.calendar {
   margin-top: 20px;
 }
+div.calendar table {
+  table-layout: fixed;
+}
 div.calendar th {
   text-align: center;
 }
 div.calendar td {
   text-align: right;
-  height: 80px;
 }
 div.calendar td div.day-event {
-  background: #efebeb;
-  height: 70px;
+  height: 80px;
 }
 div.calendar td.gray-out {
   color: #cfc8c8;
+  background: #f1f1f1;
 }
 div.calendar .today {
   border: 1px solid #f00;

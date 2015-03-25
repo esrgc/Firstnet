@@ -82,7 +82,7 @@ var Calendar = define({
       '<h4>',
         monthName + ', ' + this.year,
       '</h4>',
-      '<table class="calendar-table table  table-bordered">',
+      '<table class="calendar-table table table-bordered">',
        '<thead>',
           '<tr>',
             headerHtml,

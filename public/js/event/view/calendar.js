@@ -27,13 +27,13 @@ app.View.Calendar = Backbone.View.extend({
   },
   nextMonth: function() {
     this.calendar.incrementMonth();
-    console.log(this.calendar.month);
+    //console.log(this.calendar.month);
     this.render();//re-render calendar
     return false;
   },
   prevMonth: function() {
     this.calendar.decrementMonth();
-    console.log(this.calendar.month);
+    //console.log(this.calendar.month);
     this.render();//re-render calendar
     return false;
   }

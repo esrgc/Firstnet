@@ -173,7 +173,7 @@ var Calendar = define({
       '<h4>',
         monthName + ', ' + this.year,
       '</h4>',
-      '<table class="calendar-table table  table-bordered">',
+      '<table class="calendar-table table table-bordered">',
        '<thead>',
           '<tr>',
             headerHtml,
@@ -299,13 +299,13 @@ app.View.Calendar = Backbone.View.extend({
   },
   nextMonth: function() {
     this.calendar.incrementMonth();
-    console.log(this.calendar.month);
+    //console.log(this.calendar.month);
     this.render();//re-render calendar
     return false;
   },
   prevMonth: function() {
     this.calendar.decrementMonth();
-    console.log(this.calendar.month);
+    //console.log(this.calendar.month);
     this.render();//re-render calendar
     return false;
   }
