@@ -21,7 +21,16 @@ var daysOfMonth = getDaysInMonth(todayDate.getMonth(), todayDate.getFullYear());
 var dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 var monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
+Date.prototype.toShortTimeString = function() {
+  var hours = this.getHours();
+  var minutes = this.getMinutes();
+  var ampm = hours > 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  var strTime = hours + ':' + minutes + ampm;
+  return strTime;
+}
 var Calendar = define({
   name: 'Calendar',
   _className: 'Calendar',
@@ -117,6 +126,12 @@ var Calendar = define({
       this.year--;
       this.month = 11;
     }
+  },
+  getMonth: function() {
+    return this.month + 1;//month starts at 0
+  },
+  getYear: function() {
+    return this.year;
   }
 
 });

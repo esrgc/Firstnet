@@ -18,7 +18,7 @@ var startup = app.startup = function() {
       'Calendar'
     ],
     collections: [
-
+      'Events'
     ],
     routers: [
       'Main'

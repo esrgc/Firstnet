@@ -24,6 +24,8 @@ app.View.Calendar = Backbone.View.extend({
     var template = _.template($('#calendar-tpl').html());
     //insert compiled html to element
     this.$el.html(template({ html: calHtml, name: 'test' }));
+    //load calendar events with specified month and year
+    this.loadEvents(this.calendar.getMonth(), this.calendar.getYear());
   },
   nextMonth: function() {
     this.calendar.incrementMonth();
@@ -36,5 +38,34 @@ app.View.Calendar = Backbone.View.extend({
     //console.log(this.calendar.month);
     this.render();//re-render calendar
     return false;
+  },
+  loadEvents: function(month, year) {
+    var scope = this;
+    var eventCollection = app.getCollection('Events');
+
+    if (typeof month != 'undefined')
+      eventCollection.setMonth(month);
+    if (typeof year != 'undefined')
+      eventCollection.setYear(year);
+
+    eventCollection.fetch({
+      success: function(collection, res, options) {
+        _.each(collection.models, function(model) {
+          //parse day in event
+          var startDate = new Date(model.get('Start'));
+          var cellID = (startDate.getMonth() + 1) + '-' + (startDate.getDate());
+          //locate day cell in calendar
+          var dayCell = scope.$('.calendar-table td#' + cellID);
+          
+          var eventJson = model.toJSON();
+          var eventTpl = _.template($('#calendar-event-tpl').html());
+          var html = eventTpl(eventJson);
+          console.log(eventJson);
+
+          dayCell.find('.day-event').append(html);
+        });
+
+      }
+    });
   }
 });

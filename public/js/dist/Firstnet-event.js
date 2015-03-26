@@ -112,7 +112,16 @@ var daysOfMonth = getDaysInMonth(todayDate.getMonth(), todayDate.getFullYear());
 var dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 var monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
+Date.prototype.toShortTimeString = function() {
+  var hours = this.getHours();
+  var minutes = this.getMinutes();
+  var ampm = hours > 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  var strTime = hours + ':' + minutes + ampm;
+  return strTime;
+}
 var Calendar = define({
   name: 'Calendar',
   _className: 'Calendar',
@@ -208,6 +217,12 @@ var Calendar = define({
       this.year--;
       this.month = 11;
     }
+  },
+  getMonth: function() {
+    return this.month + 1;//month starts at 0
+  },
+  getYear: function() {
+    return this.year;
   }
 
 });
@@ -231,7 +246,7 @@ var startup = app.startup = function() {
       'Calendar'
     ],
     collections: [
-
+      'Events'
     ],
     routers: [
       'Main'
@@ -249,6 +264,72 @@ var startup = app.startup = function() {
     }
   });
 };
+/*
+Author: Tu Hoang
+ESRGC 2015
+
+Model
+event.js
+
+Represent model metadata
+
+dependency: backbone.js
+
+*/
+
+app.Model.Event = Backbone.Model.extend({
+  name: 'Event',  
+  idAttribute: 'EventID'
+});
+/*
+Author: Tu Hoang
+ESRGC 2015
+
+Collection
+events.js
+
+dependency: backbone.js
+
+*/
+
+app.Collection.Events = Backbone.Collection.extend({
+  name: 'Events',
+  model: app.Model.Event,
+  params: {
+    month: (new Date()).getMonth() + 1,//month starts at 0 in javascript
+    year: (new Date()).getFullYear()
+  },
+  url: function() {
+    return [
+      'events/',
+      this.params.month,
+      '/',
+      this.params.year
+    ].join('');
+  },
+  setMonth: function(month) {
+    if (typeof month == 'undefined') {
+      console.log('month must be specified');
+      return;
+    }
+    if (isNaN(month) || month == null) {
+      console.log('Month must be a valid numder')
+      return;
+    }
+    this.params.month = month;
+  },
+  setYear: function(year) {
+    if (typeof year == 'undefined') {
+      console.log('year must be specified');
+      return;
+    }
+    if (isNaN(year) || year == null) {
+      console.log('year must be a valid numder')
+      return;
+    }
+    this.params.year = year;
+  }
+});
 /*
 Author: Tu Hoang
 ESRGC 2015
@@ -296,6 +377,8 @@ app.View.Calendar = Backbone.View.extend({
     var template = _.template($('#calendar-tpl').html());
     //insert compiled html to element
     this.$el.html(template({ html: calHtml, name: 'test' }));
+    //load calendar events with specified month and year
+    this.loadEvents(this.calendar.getMonth(), this.calendar.getYear());
   },
   nextMonth: function() {
     this.calendar.incrementMonth();
@@ -308,5 +391,34 @@ app.View.Calendar = Backbone.View.extend({
     //console.log(this.calendar.month);
     this.render();//re-render calendar
     return false;
+  },
+  loadEvents: function(month, year) {
+    var scope = this;
+    var eventCollection = app.getCollection('Events');
+
+    if (typeof month != 'undefined')
+      eventCollection.setMonth(month);
+    if (typeof year != 'undefined')
+      eventCollection.setYear(year);
+
+    eventCollection.fetch({
+      success: function(collection, res, options) {
+        _.each(collection.models, function(model) {
+          //parse day in event
+          var startDate = new Date(model.get('Start'));
+          var cellID = (startDate.getMonth() + 1) + '-' + (startDate.getDate());
+          //locate day cell in calendar
+          var dayCell = scope.$('.calendar-table td#' + cellID);
+          
+          var eventJson = model.toJSON();
+          var eventTpl = _.template($('#calendar-event-tpl').html());
+          var html = eventTpl(eventJson);
+          console.log(eventJson);
+
+          dayCell.find('.day-event').append(html);
+        });
+
+      }
+    });
   }
 });

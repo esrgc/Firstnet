@@ -30,7 +30,10 @@ module.exports = function(grunt) {
           'public/js/dist/<%= pkg.name %>-event.js': [
                 'public/js/util/*.js',
                 'public/js/event/*.js',
-                'public/js/event/**/*.js'
+                'public/js/event/model/*.js',
+                'public/js/event/collection/*.js',
+                'public/js/event/router/*.js',
+                'public/js/event/view/*.js'
           ]
         }
       }

@@ -110,11 +110,29 @@ div.calendar {
     }
 
     td {
-        text-align: right;
+        //text-align: right;
         //height: 80px;
+        padding-left: 1px;
+        padding-right: 0;
+        padding-bottom: 0;
+        padding-top: 0;
+
         div.day-event {
-            //background: #efebeb;
-            height: 80px;
+            background: #ebeaea;
+            min-height: 80px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            padding: 1px;
+
+            > div {
+                //background: #efebeb;
+                margin-top: 2px;
+                font-size: 12px;
+                -ms-word-wrap: break-word;
+                word-wrap: break-word;
+                background: #ffc;
+            }
         }
 
         &.gray-out {

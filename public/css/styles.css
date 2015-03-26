@@ -84,10 +84,25 @@ div.calendar th {
   text-align: center;
 }
 div.calendar td {
-  text-align: right;
+  padding-left: 1px;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 div.calendar td div.day-event {
-  height: 80px;
+  background: #ebeaea;
+  min-height: 80px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  padding: 1px;
+}
+div.calendar td div.day-event > div {
+  margin-top: 2px;
+  font-size: 12px;
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+  background: #ffc;
 }
 div.calendar td.gray-out {
   color: #cfc8c8;
