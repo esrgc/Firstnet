@@ -19,7 +19,7 @@ var eventController = Class.define({
   initialize: function() {
     this.extend.prototype.initialize.apply(this, arguments);
     thisController = this;
-    console.log(this.router);
+    //console.log(this.router);
   },
   get: {
 
@@ -73,6 +73,44 @@ var eventController = Class.define({
           }
         ], function(data, dataDictionary) {
           res.json(data);
+        });
+      }
+    },
+    detail: {
+      //params: [
+      //  {
+      //    name: 'id',
+      //    callback: function(req, res, next, value) {
+      //      if (typeof value == 'undefined')
+      //        req.id = null;
+      //      else
+      //        req.id = value;
+      //      next();
+      //    }
+      //  }
+      //],
+      handler: function(req, res) {
+        var id = req.query.id;
+        if (typeof id == 'undefined') {
+          res.redirect('index');
+        }
+        //retrieve event from database
+        var repo = thisController.getRepo();
+        repo.executeProcedure('getEvent', [
+          {
+            name: 'id',
+            type: TYPES.Int,
+            value: id
+          }
+        ], function(data, dataDictionary) {
+          //console.log(data);
+          var event = data[0];
+          if(typeof event == 'undefined')
+            res.redirect('index');
+          event.date = new Date(event.Start).toLocaleDateString();
+          event.startTime = new Date(event.Start).toLocaleTimeString();
+          event.endTime = new Date(event.End).toLocaleTimeString();
+          res.render('event/detail', { data: event });
         });
       }
     }

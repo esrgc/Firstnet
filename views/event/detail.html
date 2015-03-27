@@ -1,0 +1,31 @@
+﻿<%-contentFor('body')%>
+<div class="row-fluid">
+  <div>
+    <div class="col-content">
+      <h1>Event </h1>
+      
+      <section id="contentCard">
+        <h3><%= data.Name %> - <small><%= data.Status %></small></h3> 
+        <p>
+          Description: <%= data.Description %> <br />
+          Date: <%= data.date %><br />
+          Start time: <%= data.startTime%><br />
+          End time: <%= data.endTime%><br />
+          Location: <%= data.Location %><br />
+          <br />
+          <strong>Note</strong><br />
+          <%= data.Note %>
+          <br />
+          <strong>Instruction</strong><br />
+          <%= data.Instruction %>
+          <br />
+          <strong>Agenda</strong>
+          <% if (data.Agenda != null) { %>
+            <a href="#"><%= data.Name %>-agenda</a>
+          <% } %>
+        </p>
+      </section>
+      <a href="index">Back to Calendar</a>
+    </div>
+  </div>
+</div>
