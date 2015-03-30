@@ -105,13 +105,43 @@ var eventController = Class.define({
         ], function(data, dataDictionary) {
           //console.log(data);
           var event = data[0];
-          if(typeof event == 'undefined')
+          if (typeof event == 'undefined')
             res.redirect('index');
           event.date = new Date(event.Start).toLocaleDateString();
           event.startTime = new Date(event.Start).toLocaleTimeString();
           event.endTime = new Date(event.End).toLocaleTimeString();
           res.render('event/detail', { data: event });
         });
+      }
+    },
+    create: {
+      handler: function(req, res) {
+        res.render('event/create');
+      }
+    },
+    edit: {
+      handler: function(req, res) {
+        res.render('event/edit');
+      }
+    },
+    'delete': {
+      handler: function(req, res) {
+        res.render('event/delete');
+      }
+    }
+  },
+  post: {
+    create: {
+      handler: function(req, res) {
+
+      }
+    },
+    edit: {
+      handler: function(req, res) {
+      }
+    },
+    'delete': {
+      handler: function(req, res) {
       }
     }
   }
