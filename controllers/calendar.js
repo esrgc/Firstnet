@@ -14,12 +14,12 @@ var TYPES = require('tedious').TYPES;
 var thisController; //local controller scope
 var eventController = Class.define({
   extend: BaseController,
-  name: 'event',
+  name: 'calendar',
   _className: 'EventController',
   initialize: function() {
     this.extend.prototype.initialize.apply(this, arguments);
     thisController = this;
-    //console.log(this.router);
+    console.log(this.router);
   },
   get: {
 
@@ -27,7 +27,7 @@ var eventController = Class.define({
       params: [],
       middleware: [],
       handler: function(req, res) {
-        res.render('event/index');
+        res.render('calendar/index');
       }
     },
     events: {
@@ -76,7 +76,7 @@ var eventController = Class.define({
         });
       }
     },
-    detail: {
+    event: {
       //params: [
       //  {
       //    name: 'id',
@@ -110,38 +110,44 @@ var eventController = Class.define({
           event.date = new Date(event.Start).toLocaleDateString();
           event.startTime = new Date(event.Start).toLocaleTimeString();
           event.endTime = new Date(event.End).toLocaleTimeString();
-          res.render('event/detail', { data: event });
+          res.render('calendar/detail', { data: event });
         });
       }
     },
     create: {
       handler: function(req, res) {
-        res.render('event/create');
+        res.render('calendar/create');
       }
     },
     edit: {
       handler: function(req, res) {
-        res.render('event/edit');
+        res.render('calendar/edit');
       }
     },
     'delete': {
       handler: function(req, res) {
-        res.render('event/delete');
+        res.render('calendar/delete');
       }
     }
   },
   post: {
-    create: {
+    event: {      
       handler: function(req, res) {
 
       }
-    },
-    edit: {
+    }
+  },
+  put: {
+    event: {
       handler: function(req, res) {
+
       }
-    },
-    'delete': {
+    }
+  },
+  'delete': {
+    event: {
       handler: function(req, res) {
+
       }
     }
   }

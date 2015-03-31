@@ -60,7 +60,7 @@ app.View.Calendar = Backbone.View.extend({
           var eventJson = model.toJSON();
           var eventTpl = _.template($('#calendar-event-tpl').html());
           var html = eventTpl(eventJson);
-          console.log(eventJson);
+          console.log(model.url());
 
           dayCell.find('.day-event').append(html);
         });

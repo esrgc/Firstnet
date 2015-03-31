@@ -238,10 +238,124 @@ start up function
 
 var startup = app.startup = function() {
   console.log('Initilizing application...');
+
+  //start application
+  app.application({
+    name: 'Create Event',
+    views: [
+      'Calendar'
+    ],
+    collections: [
+      'Events'
+    ],
+    routers: [
+      'Main'
+    ],
+    launch: function() {
+      //custom code on app launch event    
+      //for underscore template custom dilimiters like mustache
+      _.templateSettings = {
+        evaluate: /\{\[([\s\S]+?)\]\}/g,
+        interpolate: /\{\{([\s\S]+?)\}\}/g
+      };
+      ////force ajax calls not to cache requests
+      //$.ajaxSetup({ cache: false });
+      console.log('Launch(): Application initilization completed. ');
+    }
+  });
+};
+/*
+Author: Tu hoang
+ESRGC Mar 2015
+
+Event calendar application 
+
+backbone application
+start up function
+*/
+
+var startup = app.startup = function() {
+  console.log('Initilizing application...');
+
+  //start application
+  app.application({
+    name: 'Delete Event',
+    views: [
+      'Calendar'
+    ],
+    collections: [
+      'Events'
+    ],
+    routers: [
+      'Main'
+    ],
+    launch: function() {
+      //custom code on app launch event    
+      //for underscore template custom dilimiters like mustache
+      _.templateSettings = {
+        evaluate: /\{\[([\s\S]+?)\]\}/g,
+        interpolate: /\{\{([\s\S]+?)\}\}/g
+      };
+      ////force ajax calls not to cache requests
+      //$.ajaxSetup({ cache: false });
+      console.log('Launch(): Application initilization completed. ');
+    }
+  });
+};
+/*
+Author: Tu hoang
+ESRGC Mar 2015
+
+Event calendar application 
+
+backbone application
+start up function
+*/
+
+var startup = app.startup = function() {
+  console.log('Initilizing application...');
   
   //start application
   app.application({
     name: 'Event Calendar',
+    views: [
+      'Calendar'
+    ],
+    collections: [
+      'Events'
+    ],
+    routers: [
+      'Main'
+    ],
+    launch: function() {
+      //custom code on app launch event    
+      //for underscore template custom dilimiters like mustache
+      _.templateSettings = {
+        evaluate: /\{\[([\s\S]+?)\]\}/g,
+        interpolate: /\{\{([\s\S]+?)\}\}/g
+      };
+      ////force ajax calls not to cache requests
+      //$.ajaxSetup({ cache: false });
+      console.log('Launch(): Application initilization completed. ');
+    }
+  });
+};
+/*
+Author: Tu hoang
+ESRGC Mar 2015
+
+Event calendar application 
+
+backbone application
+start up function
+*/
+
+var startup = app.startup = function() {
+  console.log('Initilizing application...');
+
+  //start application
+  app.application({
+    name: 'Update Event',
     views: [
       'Calendar'
     ],
@@ -279,7 +393,8 @@ dependency: backbone.js
 
 app.Model.Event = Backbone.Model.extend({
   name: 'Event',  
-  idAttribute: 'EventID'
+  idAttribute: 'EventID',
+  urlRoot: 'event'
 });
 /*
 Author: Tu Hoang
@@ -413,7 +528,7 @@ app.View.Calendar = Backbone.View.extend({
           var eventJson = model.toJSON();
           var eventTpl = _.template($('#calendar-event-tpl').html());
           var html = eventTpl(eventJson);
-          console.log(eventJson);
+          console.log(model.url());
 
           dayCell.find('.day-event').append(html);
         });

@@ -13,5 +13,6 @@ dependency: backbone.js
 
 app.Model.Event = Backbone.Model.extend({
   name: 'Event',  
-  idAttribute: 'EventID'
+  idAttribute: 'EventID',
+  urlRoot: 'event'
 });
