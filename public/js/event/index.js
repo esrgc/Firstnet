@@ -32,7 +32,6 @@ var startup = app.startup = function() {
       };
       ////force ajax calls not to cache requests
       //$.ajaxSetup({ cache: false });
-      console.log('Launch(): Application initilization completed. ');
     }
   });
 };

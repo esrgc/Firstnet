@@ -119,9 +119,9 @@ var eventController = Class.define({
         res.render('calendar/create');
       }
     },
-    edit: {
+    update: {
       handler: function(req, res) {
-        res.render('calendar/edit');
+        res.render('calendar/update');
       }
     },
     'delete': {
@@ -131,23 +131,71 @@ var eventController = Class.define({
     }
   },
   post: {
-    event: {      
-      handler: function(req, res) {
+    handler: function(req, res) {
+      console.log('Create new event. Inserting data...')
+      var data = req.body;
+      console.log(data);
 
+      var columns = [], values = [];
+
+      for (var i in data) {
+        var p = data[i];//take value
+        columns.push(i);
+        values.push(p);
       }
+
+      var query = [
+        'Insert into [Event] (' + columns.join(',') + ')',
+        'Values (' + values.join(',')+ ')' 
+      ].join('');
+      console.log('Query being executed...')
+      console.log(query);
+
+      var repo = thisController.getRepo();
+      repo.executeQuery(query, [], function(data, dataDict) {
+        res.redirect('event/index');
+      });
+
+      res.send('200');
     }
   },
   put: {
     event: {
+      params: [
+        {
+          name: 'id',
+          callback: function(req, res, next, value) {
+            if (typeof value == 'undefined')
+              res.redirect('update');
+            req.id = value;
+            next();
+          }
+        }
+      ],
       handler: function(req, res) {
-
+        console.log(req.body);
+        console.log(req.baseUrl);
+        res.send('200');
       }
     }
   },
   'delete': {
     event: {
+      params: [
+       {
+         name: 'id',
+         callback: function(req, res, next, value) {
+           if (typeof value == 'undefined')
+             res.redirect('update');
+           req.id = value;
+           next();
+         }
+       }
+      ],
       handler: function(req, res) {
-
+        console.log(req.body);
+        console.log(req.baseUrl);
+        res.send('200');
       }
     }
   }

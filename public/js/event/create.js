@@ -15,13 +15,10 @@ var startup = app.startup = function() {
   app.application({
     name: 'Create Event',
     views: [
-      'Calendar'
     ],
     collections: [
-      'Events'
     ],
     routers: [
-      'Main'
     ],
     launch: function() {
       //custom code on app launch event    
@@ -32,7 +29,6 @@ var startup = app.startup = function() {
       };
       ////force ajax calls not to cache requests
       //$.ajaxSetup({ cache: false });
-      console.log('Launch(): Application initilization completed. ');
     }
   });
 };

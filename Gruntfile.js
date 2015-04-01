@@ -27,9 +27,33 @@ module.exports = function(grunt) {
      
       multi: {
         files: {
-          'public/js/dist/<%= pkg.name %>-event.js': [
+          'public/js/dist/<%= pkg.name %>-index.js': [
                 'public/js/util/*.js',
-                'public/js/event/*.js',
+                'public/js/event/index.js',
+                'public/js/event/model/*.js',
+                'public/js/event/collection/*.js',
+                'public/js/event/router/*.js',
+                'public/js/event/view/*.js'
+          ],
+          'public/js/dist/<%= pkg.name %>-create-event.js': [
+                'public/js/util/*.js',
+                'public/js/event/create.js',
+                'public/js/event/model/*.js',
+                'public/js/event/collection/*.js',
+                'public/js/event/router/*.js',
+                'public/js/event/view/*.js'
+          ],
+          'public/js/dist/<%= pkg.name %>-update-event.js': [
+                'public/js/util/*.js',
+                'public/js/event/update.js',
+                'public/js/event/model/*.js',
+                'public/js/event/collection/*.js',
+                'public/js/event/router/*.js',
+                'public/js/event/view/*.js'
+          ],
+          'public/js/dist/<%= pkg.name %>-delete-event.js': [
+                'public/js/util/*.js',
+                'public/js/event/delete.js',
                 'public/js/event/model/*.js',
                 'public/js/event/collection/*.js',
                 'public/js/event/router/*.js',

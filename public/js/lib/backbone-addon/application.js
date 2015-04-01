@@ -171,6 +171,7 @@ if (typeof BackboneApp == 'undefined')
         options.launch();
       //finally starts backbone history;
       Backbone.history.start();
+      console.log('Application "' + scope.appInstance.name + '" initilization completed. ');
     },
     //Returns an object containing form data
     //form is either a string id of the form
