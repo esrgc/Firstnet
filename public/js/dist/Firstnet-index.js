@@ -404,8 +404,10 @@ app.View.Calendar = Backbone.View.extend({
     eventCollection.fetch({
       success: function(collection, res, options) {
         _.each(collection.models, function(model) {
+          
           //parse day in event
-          var startDate = new Date(model.get('Start'));
+          var startDate = new Date(model.get('StartDate'));
+          //console.log(startDate);
           var cellID = (startDate.getMonth() + 1) + '-' + (startDate.getDate());
           //locate day cell in calendar
           var dayCell = scope.$('.calendar-table td#' + cellID);

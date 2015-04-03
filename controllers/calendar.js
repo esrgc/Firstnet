@@ -72,6 +72,7 @@ var eventController = Class.define({
             value: year
           }
         ], function(data, dataDictionary) {
+          console.log(data)
           res.json(data);
         });
       }
@@ -104,13 +105,13 @@ var eventController = Class.define({
           }
         ], function(data, dataDictionary) {
           //console.log(data);
-          var event = data[0];
-          if (typeof event == 'undefined')
+          var e = data[0];
+          if (typeof e== 'undefined')
             res.redirect('index');
-          event.date = new Date(event.Start).toLocaleDateString();
-          event.startTime = new Date(event.Start).toLocaleTimeString();
-          event.endTime = new Date(event.End).toLocaleTimeString();
-          res.render('calendar/detail', { data: event });
+          //e.date = new Date(e.Start).toLocaleDateString();
+          //e.startTime = new Date(e.Start).toLocaleTimeString();
+          //e.endTime = new Date(e.End).toLocaleTimeString();
+          res.render('calendar/detail', { data: e });
         });
       }
     },
@@ -131,32 +132,33 @@ var eventController = Class.define({
     }
   },
   post: {
-    handler: function(req, res) {
-      console.log('Create new event. Inserting data...')
-      var data = req.body;
-      console.log(data);
+    event: {
+      handler: function(req, res) {
+        console.log('Create new event. Inserting data...')
+        var data = req.body;
+        console.log(data);
 
-      var columns = [], values = [];
+        var columns = [], values = [];
 
-      for (var i in data) {
-        var p = data[i];//take value
-        columns.push(i);
-        values.push(p);
+        for (var i in data) {
+          var p = data[i];//take value
+          columns.push('[' + i + ']');
+          values.push('\'' + p + '\'');
+        }
+
+        var query = [
+          'Insert into [Event] (' + columns.join(',') + ')\n',
+          'Values (' + values.join(',') + ')'
+        ].join('');
+
+
+        console.log(query);
+
+        var repo = thisController.getRepo();
+        repo.executeQuery(query, [], function(data, dataDict) {
+         res.redirect('index');
+        });
       }
-
-      var query = [
-        'Insert into [Event] (' + columns.join(',') + ')',
-        'Values (' + values.join(',')+ ')' 
-      ].join('');
-      console.log('Query being executed...')
-      console.log(query);
-
-      var repo = thisController.getRepo();
-      repo.executeQuery(query, [], function(data, dataDict) {
-        res.redirect('event/index');
-      });
-
-      res.send('200');
     }
   },
   put: {

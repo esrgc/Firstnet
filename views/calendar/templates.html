@@ -13,10 +13,6 @@
 </script>
 
 <script type="text/template" id="calendar-event-tpl">
-  {[
-        var startTime = new Date(Start).toShortTimeString();
-        var endTime = new Date(End).toShortTimeString();
-  ]}
   <div id="event-{{ Name }}">
 
     <div>
@@ -25,7 +21,7 @@
       </a>
     </div>
     <p class="muted">
-      {{startTime}}&nbsp;-&nbsp;{{ endTime }}
+      {{StartTime}}&nbsp;-&nbsp;{{ EndTime }}
     </p>
     <p>{{Status}}</p>
   </div>

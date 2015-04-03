@@ -5,56 +5,56 @@
       <h1>Create Event</h1>
 
       <section id="contentCard">
-        <form action="create" method="post" class="form-horizontal">
+        <form action="event" method="post" class="form-horizontal">
           <div class="control-group">
             <label class="control-label" for="Name">Name</label>
             <div class="controls">
-              <input type="text" name="Name" placeholder="Event Name"/>
+              <input type="text" name="Name" placeholder="Event Name" class="input-xlarge" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="Name">Description</label>
             <div class="controls">
-              <input type="text" name="Description" placeholder="Description"/>
+              <textarea name="Description" placeholder="Description" class="input-xlarge"></textarea>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="Start">Start</label>
             <div class="controls">
-              <input type="text" name="Start" id="start-datetime-picker" placeholder="Start date time"/>
+              <input type="text" name="Start" id="start-datetime-picker" placeholder="Start date time" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="End">End</label>
             <div class="controls">
-              <input type="text" name="End" id="end-datetime-picker" placeholder="End date time"/>
+              <input type="text" name="End" id="end-datetime-picker" placeholder="End date time" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="Status">Status</label>
             <div class="controls">
-              <input type="text" name="Status" placeholder="Status" value="Created"/>
+              <input type="text" name="Status" placeholder="Status" value="Created" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="Location">Location</label>
             <div class="controls">
-              <input type="text" name="Location" placeholder="Where does this take place?"/>
+              <input type="text" name="Location" placeholder="Where does this take place?" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="Note">Note</label>
             <div class="controls">
-              <textarea name="Note" placeholder="Notes to attendees"></textarea>
+              <textarea name="Note" placeholder="Notes to attendees" class="input-xlarge"></textarea>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="Instruction">Instruction</label>
             <div class="controls">
-              <input type="text" name="Instruction" placeholder="Special instructions"/>
+              <textarea name="Instruction" placeholder="Special instructions" class="input-xlarge"></textarea>
             </div>
           </div>
-         <!-- <div class="control-group">
+          <!-- <div class="control-group">
             <label class="control-label" for="Agenda">Agenda</label>
             <div class="controls">
               <input type="text" name="Agenda" placeholder="Agenda if available"/>
@@ -67,12 +67,12 @@
             </div>
           </div>-->
           <div class="form-actions">
-            <input class="btn btn-primary btn-small" type="submit" value="Create"/>
+            <input class="btn btn-primary btn-small" type="submit" value="Create" />
             <a class="btn btn-default btn-small" href="index">Cancel</a>
           </div>
         </form>
       </section>
-      
+
     </div>
   </div>
 </div>
@@ -87,5 +87,12 @@
   $(function() {
     if (typeof startup == 'function')
       startup();
+
+    $('#start-datetime-picker, #end-datetime-picker').datetimepicker({
+      format: 'mm/dd/yyyy HH:ii P',
+      showMeridian: true,
+      autoclose: true,
+      todayBtn: true
+    });
   });
 </script>
