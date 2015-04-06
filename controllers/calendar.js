@@ -22,7 +22,6 @@ var eventController = Class.define({
     console.log(this.router);
   },
   get: {
-
     index: {
       params: [],
       middleware: [],
@@ -106,7 +105,7 @@ var eventController = Class.define({
         ], function(data, dataDictionary) {
           //console.log(data);
           var e = data[0];
-          if (typeof e== 'undefined')
+          if (typeof e == 'undefined')
             res.redirect('index');
           //e.date = new Date(e.Start).toLocaleDateString();
           //e.startTime = new Date(e.Start).toLocaleTimeString();
@@ -122,7 +121,29 @@ var eventController = Class.define({
     },
     update: {
       handler: function(req, res) {
-        res.render('calendar/update');
+        var id = req.query.id;
+        if (typeof id == 'undefined') {
+          res.redirect('index');
+        }
+        //retrieve event from database
+        var repo = thisController.getRepo();
+        repo.executeProcedure('getEvent', [
+          {
+            name: 'id',
+            type: TYPES.Int,
+            value: id
+          }
+        ], function(data, dataDictionary) {
+          //console.log(data);
+          var e = data[0];
+          if (typeof e == 'undefined')
+            res.redirect('index');
+          //e.date = new Date(e.Start).toLocaleDateString();
+          //e.startTime = new Date(e.Start).toLocaleTimeString();
+          //e.endTime = new Date(e.End).toLocaleTimeString();
+          res.render('calendar/update', { data: e });
+        });
+       
       }
     },
     'delete': {
@@ -132,7 +153,7 @@ var eventController = Class.define({
     }
   },
   post: {
-    event: {
+    create: {
       handler: function(req, res) {
         console.log('Create new event. Inserting data...')
         var data = req.body;
@@ -156,33 +177,58 @@ var eventController = Class.define({
 
         var repo = thisController.getRepo();
         repo.executeQuery(query, [], function(data, dataDict) {
-         res.redirect('index');
+          res.redirect('index');
         });
       }
-    }
-  },
-  put: {
-    event: {
-      params: [
-        {
-          name: 'id',
-          callback: function(req, res, next, value) {
-            if (typeof value == 'undefined')
-              res.redirect('update');
-            req.id = value;
-            next();
-          }
-        }
-      ],
+    },
+    update: {
+      //params: [
+      //  {
+      //    name: 'id',
+      //    callback: function(req, res, next, value) {
+      //      if (typeof value == 'undefined')
+      //        res.redirect('update');
+      //      req.id = value;
+      //      next();
+      //    }
+      //  }
+      //],
       handler: function(req, res) {
-        console.log(req.body);
-        console.log(req.baseUrl);
-        res.send('200');
+        console.log('Updating event....')
+        var data = req.body;
+        console.log(data);
+
+        var columns = [];
+        var id = data.EventID;
+        for (var i in data) {
+          if (i == 'EventID')//skip eventID
+            continue;
+          var p = data[i];//take value
+          if (typeof p == 'string')
+            columns.push('[' + i + '] = \'' + p + '\'');
+          else
+            columns.push('[' + i + '] = ' + p);
+        }
+
+        var query = [
+          'UPDATE [Event]\n',
+          'SET ',
+          columns.join(','),
+          'WHERE [EventID] = ' + id
+        ].join('');
+
+
+        console.log(query);
+
+        var repo = thisController.getRepo();
+        repo.executeQuery(query, [], function(data, dataDict) {
+          console.log('Success!');
+          res.redirect('event?id=' + id);
+        });
+        //res.redirect('event?id=' + data.EventID);
       }
-    }
-  },
-  'delete': {
-    event: {
+    },
+    'delete': {
       params: [
        {
          name: 'id',
@@ -195,12 +241,21 @@ var eventController = Class.define({
        }
       ],
       handler: function(req, res) {
-        console.log(req.body);
-        console.log(req.baseUrl);
-        res.send('200');
+        var query = [
+           'DELETE [Event]\n',
+           'WHERE [EventID] = ' + req.id
+        ].join('');
+
+        console.log(query);
+
+        var repo = thisController.getRepo();
+        repo.executeQuery(query, [], function(data, dataDict) {
+          res.redirect('index');
+        });
       }
     }
   }
+  
 
 });
 

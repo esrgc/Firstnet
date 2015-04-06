@@ -5,56 +5,57 @@
       <h1>Update Event</h1>
 
       <section id="contentCard">
-        <form action="create" method="post" class="form-horizontal">
+        <form action="update" method="post" class="form-horizontal">
+          <input type="hidden" name="EventID" value="<%= data.EventID %>"/>
           <div class="control-group">
             <label class="control-label" for="Name">Name</label>
             <div class="controls">
-              <input type="text" name="Name" placeholder="Event Name"/>
+              <input type="text" name="Name" placeholder="Event Name" value="<%= data.Name %>" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="Name">Description</label>
             <div class="controls">
-              <input type="text" name="Description" placeholder="Description"/>
+              <textarea name="Description" placeholder="Description" class="input-xlarge"><%= data.Description %></textarea>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="Start">Start</label>
             <div class="controls">
-              <input type="text" name="Start" id="start-datetime-picker" placeholder="Start date time"/>
+              <input type="text" name="Start" id="start-datetime-picker" placeholder="Start date time" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="End">End</label>
             <div class="controls">
-              <input type="text" name="End" id="end-datetime-picker" placeholder="End date time"/>
+              <input type="text" name="End" id="end-datetime-picker" placeholder="End date time" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="Status">Status</label>
             <div class="controls">
-              <input type="text" name="Status" placeholder="Status" value="Created"/>
+              <input type="text" name="Status" placeholder="Status" value="<%= data.Status %>" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="Location">Location</label>
             <div class="controls">
-              <input type="text" name="Location" placeholder="Where does this take place?"/>
+              <input type="text" name="Location" placeholder="Where does this take place?" value="<%= data.Location%>" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="Note">Note</label>
             <div class="controls">
-              <textarea name="Note" placeholder="Notes to attendees"></textarea>
+              <textarea name="Note" placeholder="Notes to attendees" class="input-xlarge"><%= data.Note %></textarea>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="Instruction">Instruction</label>
             <div class="controls">
-              <input type="text" name="Instruction" placeholder="Special instructions"/>
+              <textarea name="Instruction" placeholder="Special instructions" class="input-xlarge"><%= data.Instruction %></textarea>
             </div>
           </div>
-         <!-- <div class="control-group">
+          <!-- <div class="control-group">
             <label class="control-label" for="Agenda">Agenda</label>
             <div class="controls">
               <input type="text" name="Agenda" placeholder="Agenda if available"/>
@@ -67,29 +68,33 @@
             </div>
           </div>-->
           <div class="form-actions">
-            <input class="btn btn-primary btn-small" type="submit" value="Create"/>
+            <input class="btn btn-primary btn-small" type="submit" value="Update" />
             <a class="btn btn-default btn-small" href="index">Cancel</a>
           </div>
         </form>
       </section>
-      
+
     </div>
   </div>
 </div>
 <link href="/js/lib/bootstrap-datetime-picker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 <script src="/js/lib/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js"></script>
-<!--Scripts-->
-<script src="../js/lib/underscore/underscore.js"></script>
-<script src="../js/lib/backbone/backbone.js"></script>
-<script src="../js/lib/backbone-addon/application.js"></script>
-<script src="../js/dist/Firstnet-create.js"></script>
 <script type="text/javascript">
   $(function() {
-    $('#start-datetime-picker, #end-datetime-picker').datetimepicker({
+    $('#start-datetime-picker').datetimepicker({
       format: 'mm/dd/yyyy HH:ii P',
       showMeridian: true,
       autoclose: true,
       todayBtn: true
+      //initialDate: new Date('<%= data.StartDate %> <%= data.StartTime%>')
     });
+    $('#end-datetime-picker').datetimepicker({
+      format: 'mm/dd/yyyy HH:ii P',
+      showMeridian: true,
+      autoclose: true,
+      todayBtn: true
+      //initialDate: new Date('<%= data.EndDate %> <%= data.EndTime%>')
+    });
+
   });
 </script>

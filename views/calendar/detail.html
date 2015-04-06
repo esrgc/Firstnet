@@ -3,11 +3,12 @@
   <div>
     <div class="col-content">
       <h1>Event </h1>
-      
+
       <section id="contentCard">
-        <h3><%= data.Name %> - <small><%= data.Status %></small></h3> 
+        <h3><%= data.Name %> - <small><%= data.Status %></small></h3>
         <p>
-          <strong>Description:</strong> <%= data.Description %> <br />
+          <strong>Description:</strong> <%= data.Description %>
+          <br />
           <strong>Date:</strong> <%= data.StartDate %><br />
           <strong>Start:</strong> <%= data.StartTime%><br />
           <strong>End:</strong> <%= data.EndTime%><br />
@@ -19,9 +20,10 @@
           <strong>Instruction</strong><br />
           <%= data.Instruction %>
           <br />
-          <strong>Agenda</strong>
+
           <% if (data.Agenda != null) { %>
-            <a href="#"><%= data.Name %>-agenda</a>
+          <strong>Agenda</strong>
+          <a href="#"><%= data.Name %>-agenda</a>
           <% } %>
         </p>
       </section>
