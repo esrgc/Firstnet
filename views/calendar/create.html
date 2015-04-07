@@ -21,13 +21,21 @@
           <div class="control-group">
             <label class="control-label" for="Start">Start</label>
             <div class="controls">
-              <input type="text" name="Start" id="start-datetime-picker" placeholder="Start date time" />
+              <div class="input-append date input-xlarge" id="start-datetime-picker"
+                data-date-format="mm/dd/yyyy HH:ii P">
+                <input class="span10" disabled size="16" type="text" value="">
+                <span class="add-on"><i class="icon-th"></i></span>
+              </div>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="End">End</label>
             <div class="controls">
-              <input type="text" name="End" id="end-datetime-picker" placeholder="End date time" />
+              <div class="input-append date input-xlarge" id="end-datetime-picker"" 
+                data-date-format="mm/dd/yyyy HH:ii P">
+                <input class="span10" size="16" disabled type="text"">
+                <span class="add-on"><i class="icon-th"></i></span>
+              </div>
             </div>
           </div>
           <div class="control-group">
@@ -92,7 +100,8 @@
       format: 'mm/dd/yyyy HH:ii P',
       showMeridian: true,
       autoclose: true,
-      todayBtn: true
+      todayBtn: true,
+      startDate: new Date()
     });
   });
 </script>

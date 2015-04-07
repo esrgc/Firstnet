@@ -10,6 +10,7 @@ var lib = require('easynodemvc');
 var Class = lib.Class;
 var BaseController = lib.BaseController;
 var TYPES = require('tedious').TYPES;
+var validator = require('validator');
 
 var thisController; //local controller scope
 var eventController = Class.define({
@@ -159,6 +160,9 @@ var eventController = Class.define({
         var data = req.body;
         console.log(data);
 
+        //validate start and end time
+
+
         var columns = [], values = [];
 
         for (var i in data) {
@@ -182,21 +186,10 @@ var eventController = Class.define({
       }
     },
     update: {
-      //params: [
-      //  {
-      //    name: 'id',
-      //    callback: function(req, res, next, value) {
-      //      if (typeof value == 'undefined')
-      //        res.redirect('update');
-      //      req.id = value;
-      //      next();
-      //    }
-      //  }
-      //],
-      handler: function(req, res) {
+     handler: function(req, res) {
         console.log('Updating event....')
         var data = req.body;
-        console.log(data);
+        //console.log(data);
 
         var columns = [];
         var id = data.EventID;
@@ -214,11 +207,11 @@ var eventController = Class.define({
           'UPDATE [Event]\n',
           'SET ',
           columns.join(','),
-          'WHERE [EventID] = ' + id
+          '\nWHERE [EventID] = ' + id
         ].join('');
 
 
-        console.log(query);
+        //console.log(query);
 
         var repo = thisController.getRepo();
         repo.executeQuery(query, [], function(data, dataDict) {
