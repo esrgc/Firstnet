@@ -2,28 +2,42 @@
 <div class="row-fluid">
   <div>
     <div class="col-content">
-      <h1>Create Event</h1>
-
+      <h1>Event </h1>
+      <div class="alert alert-warning">
+        <strong>Confirm deletion</strong><br />
+        <p>
+          Are you sure you want to delete this event?
+        </p>
+        <form method="post" action="delete">
+          <input type="hidden" name="EventID" value="<%= data.EventID %>"/>
+          <input type="submit" value="Delete" class="btn btn-danger"/>
+          <a href="event?id=<%= data.EventID %>" class="btn btn-default">Cancel</a>
+        </form>
+      </div>
       <section id="contentCard">
+        <h3><%= data.Name %> - <small><%= data.Status %></small></h3>
+        <p>
+          <strong>Description:</strong> <%= data.Description %>
+          <br />
+          <strong>Date:</strong> <%= data.StartDate %><br />
+          <strong>Start:</strong> <%= data.StartTime%><br />
+          <strong>End:</strong> <%= data.EndTime%><br />
+          <strong>Location:</strong> <%= data.Location %><br />
+          <br />
+          <strong>Note</strong><br />
+          <%= data.Note %>
+          <br />
+          <strong>Instruction</strong><br />
+          <%= data.Instruction %>
+          <br />
+
+          <% if (data.Agenda != null) { %>
+          <strong>Agenda</strong>
+          <a href="#"><%= data.Name %>-agenda</a>
+          <% } %>
+        </p>
       </section>
-      
+      <a href="index">Back to Calendar</a>
     </div>
   </div>
 </div>
-<link href="/js/lib/bootstrap-datetime-picker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-<script src="/js/lib/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js"></script>
-<!--Scripts-->
-<script src="../js/lib/underscore/underscore.js"></script>
-<script src="../js/lib/backbone/backbone.js"></script>
-<script src="../js/lib/backbone-addon/application.js"></script>
-<script src="../js/dist/Firstnet-delete.js"></script>
-<script type="text/javascript">
-  $(function() {
-    $('#start-datetime-picker, #end-datetime-picker').datetimepicker({
-      format: 'mm/dd/yyyy HH:ii P',
-      showMeridian: true,
-      autoclose: true,
-      todayBtn: true
-    });
-  });
-</script>

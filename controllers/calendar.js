@@ -20,7 +20,7 @@ var eventController = Class.define({
   initialize: function() {
     this.extend.prototype.initialize.apply(this, arguments);
     thisController = this;
-    console.log(this.router);
+    //console.log(this.router);
   },
   get: {
     index: {
@@ -72,7 +72,7 @@ var eventController = Class.define({
             value: year
           }
         ], function(data, dataDictionary) {
-          console.log(data)
+          //console.log(data)
           res.json(data);
         });
       }
@@ -149,7 +149,28 @@ var eventController = Class.define({
     },
     'delete': {
       handler: function(req, res) {
-        res.render('calendar/delete');
+        var id = req.query.id;
+        if (typeof id == 'undefined') {
+          res.redirect('index');
+        }
+        //retrieve event from database
+        var repo = thisController.getRepo();
+        repo.executeProcedure('getEvent', [
+          {
+            name: 'id',
+            type: TYPES.Int,
+            value: id
+          }
+        ], function(data, dataDictionary) {
+          //console.log(data);
+          var e = data[0];
+          if (typeof e == 'undefined')
+            res.redirect('index');
+          //e.date = new Date(e.Start).toLocaleDateString();
+          //e.startTime = new Date(e.Start).toLocaleTimeString();
+          //e.endTime = new Date(e.End).toLocaleTimeString();
+          res.render('calendar/delete', { data: e });
+        });
       }
     }
   },
@@ -168,6 +189,7 @@ var eventController = Class.define({
         for (var i in data) {
           var p = data[i];//take value
           columns.push('[' + i + ']');
+          p = p.replace("'", "''")
           values.push('\'' + p + '\'');
         }
 
@@ -222,21 +244,15 @@ var eventController = Class.define({
       }
     },
     'delete': {
-      params: [
-       {
-         name: 'id',
-         callback: function(req, res, next, value) {
-           if (typeof value == 'undefined')
-             res.redirect('update');
-           req.id = value;
-           next();
-         }
-       }
-      ],
+     
       handler: function(req, res) {
+        console.log('Updating event....')
+        var data = req.body;
+        var id = data.EventID;
+
         var query = [
            'DELETE [Event]\n',
-           'WHERE [EventID] = ' + req.id
+           'WHERE [EventID] = ' + id
         ].join('');
 
         console.log(query);
