@@ -2,7 +2,7 @@
 Author: Tu Hoang
 ESRGC 2015
 
-Event controller class 
+Event calendar controller class 
 
 */
 
