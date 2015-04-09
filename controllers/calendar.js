@@ -11,6 +11,7 @@ var Class = lib.Class;
 var BaseController = lib.BaseController;
 var TYPES = require('tedious').TYPES;
 var validator = require('validator');
+var isAuthenticated = require('../lib/filters/isAuthenticated');
 
 var thisController; //local controller scope
 var eventController = Class.define({
@@ -27,7 +28,7 @@ var eventController = Class.define({
       params: [],
       middleware: [],
       handler: function(req, res) {
-        res.render('calendar/index');
+        res.render('calendar/index', { user: req.user });
       }
     },
     events: {
@@ -111,16 +112,26 @@ var eventController = Class.define({
           //e.date = new Date(e.Start).toLocaleDateString();
           //e.startTime = new Date(e.Start).toLocaleTimeString();
           //e.endTime = new Date(e.End).toLocaleTimeString();
-          res.render('calendar/detail', { data: e });
+          res.render('calendar/detail', { data: e, user: req.user });
         });
       }
     },
     create: {
+      middlewares: [
+        {
+          callback: isAuthenticated
+        }
+      ],
       handler: function(req, res) {
-        res.render('calendar/create');
+        res.render('calendar/create', { user: req.user });
       }
     },
     update: {
+      middlewares: [
+        {
+          callback: isAuthenticated
+        }
+      ],
       handler: function(req, res) {
         var id = req.query.id;
         if (typeof id == 'undefined') {
@@ -142,12 +153,17 @@ var eventController = Class.define({
           //e.date = new Date(e.Start).toLocaleDateString();
           //e.startTime = new Date(e.Start).toLocaleTimeString();
           //e.endTime = new Date(e.End).toLocaleTimeString();
-          res.render('calendar/update', { data: e });
+          res.render('calendar/update', { data: e, user: req.user });
         });
-       
+
       }
     },
     'delete': {
+      middlewares: [
+        {
+          callback: isAuthenticated
+        }
+      ],
       handler: function(req, res) {
         var id = req.query.id;
         if (typeof id == 'undefined') {
@@ -169,13 +185,18 @@ var eventController = Class.define({
           //e.date = new Date(e.Start).toLocaleDateString();
           //e.startTime = new Date(e.Start).toLocaleTimeString();
           //e.endTime = new Date(e.End).toLocaleTimeString();
-          res.render('calendar/delete', { data: e });
+          res.render('calendar/delete', { data: e, user: req.user });
         });
       }
     }
   },
   post: {
     create: {
+      middlewares: [
+        {
+          callback: isAuthenticated
+        }
+      ],
       handler: function(req, res) {
         console.log('Create new event. Inserting data...')
         var data = req.body;
@@ -208,7 +229,12 @@ var eventController = Class.define({
       }
     },
     update: {
-     handler: function(req, res) {
+      middlewares: [
+        {
+          callback: isAuthenticated
+        }
+      ],
+      handler: function(req, res) {
         console.log('Updating event....')
         var data = req.body;
         //console.log(data);
@@ -244,7 +270,11 @@ var eventController = Class.define({
       }
     },
     'delete': {
-     
+      middlewares: [
+        {
+          callback: isAuthenticated
+        }
+      ],
       handler: function(req, res) {
         console.log('Updating event....')
         var data = req.body;
@@ -264,7 +294,7 @@ var eventController = Class.define({
       }
     }
   }
-  
+
 
 });
 

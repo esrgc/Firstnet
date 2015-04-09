@@ -48,7 +48,7 @@ var libraryController = Class.define({
         }
         console.log(library);
         //render view
-        res.render('library/index', { model: library });
+        res.render('library/index', { model: library, user: req.user });
       }
     }
   }

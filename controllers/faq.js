@@ -25,7 +25,7 @@ var faqController = Class.define({
     index: {
       handler: function(req, res) {
         //render view
-        res.render('faq/index');
+        res.render('faq/index', { user: req.user });
       }
     }
     

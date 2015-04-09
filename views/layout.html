@@ -35,20 +35,22 @@
   <script type='text/javascript' src='../egov/js/MDAlertCode.js'></script>
   <!--google analytics-->
   <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-  ga('create', 'UA-50929919-1', 'auto');
-  ga('send', 'pageview');
+    ga('create', 'UA-50929919-1', 'auto');
+    ga('send', 'pageview');
   </script>
   <script type="text/javascript">
-        function openPage(url){
-          console.log("opening page: " + url);
-          var win = window.open(url, '_blank');
-          win.focus();
-      }  
+    function openPage(url) {
+      console.log("opening page: " + url);
+      var win = window.open(url, '_blank');
+      win.focus();
+    }
   </script>
 </head>
 <body>
@@ -185,9 +187,12 @@
               <li><a href="../library/index" class="level0">Documents</a></li>
               <!--<li><a href="../news/index" class="level0">News</a></li>-->
               <li><a href="../faq/index" class="level0">FAQ</a></li>
-              <!--<li><a href="../event/index" class="level0">Events</a></li>-->
+              <li><a href="../calendar/index" class="level0">Events</a></li>
               <li>
-                <button onclick="openPage('https://mdinterop.sharepoint.com/_layouts/15/guestaccess.aspx?guestaccesstoken=YnmdgkJnC5aFqLw8GHcGoKgkm8uRKEfSCKKh2UoDZrI%3d&docid=1_1472205947605477eb201654484f97ae3&wdFormId=%7B61314411%2D62A4%2D43D3%2DAD11%2DA2FACAB2B5FF%7D')" style="color:white; min-width:133px; background-color: #b00000; border-radius: 6px; height: 30px; padding: 5px; font-size:1em"><strong>Contact Us!</strong></button>
+                <button onclick="openPage('https://mdinterop.sharepoint.com/_layouts/15/guestaccess.aspx?guestaccesstoken=YnmdgkJnC5aFqLw8GHcGoKgkm8uRKEfSCKKh2UoDZrI%3d&docid=1_1472205947605477eb201654484f97ae3&wdFormId=%7B61314411%2D62A4%2D43D3%2DAD11%2DA2FACAB2B5FF%7D')"
+                  style="color: white; min-width: 133px; background-color: #b00000; border-radius: 6px; height: 30px;
+                  padding: 5px; font-size: 1em">
+                  <strong>Contact Us!</strong></button>
               </li>
             </ul>
           </nav>
@@ -198,13 +203,38 @@
           <div class="uiMessage">
             <strong>Notice:</strong> JavaScript is not available in your browser. Some enhanced features will not
             be available until JavaScript is enabled.
+         
           </div>
         </div>
       </noscript>
       <div id="primary_content_Block" class="row-fluid content-block">
         <div id="primary_one_col" class="span12">
           <div class="mdgov_contentWrapper">
+            <div>
+              <% if (typeof user != 'undefined') { %>
+                <span class="pull-right">Signed in as <strong><%= user.username %></strong>
+                  &nbsp;
+                  <a class="btn btn-small btn-default" title="Sign out" href="/account/signout"><i class="fa fa-sign-out">
+                  </i></a>
+                </span>
+              <% } else { %>
+                <span class="pull-right">
+                  <a class="btn btn-small btn-default" title="Admin sign in" href="/account/signin"><i class="fa fa-sign-in">
+                  </i> Sign in</a>
+                </span>
+              <% } %>
+            </div>
+            <% 
+              console.log('message: ');
+              if (typeof message != 'undefined') {  
+              console.log(message);
+            
+            %>
+                <p class="text-error text-center"><%= message %></p>
+            <% } %>
+
             <%- body %>             
+         
           </div>
         </div>
 
@@ -234,6 +264,7 @@
             </li>
             <li>
               <h5><small>National Telecommunications
+               
                 <br />
                 & Information Administration</small></h5>
               <a href="http://www.ntia.doc.gov/">
@@ -297,6 +328,7 @@
     <!--Twitter feed-->
     <script>!function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
     <%- script %>
+ 
   </div>
 </body>
 </html>

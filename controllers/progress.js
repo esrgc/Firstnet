@@ -25,7 +25,7 @@ var aboutController = Class.define({
     index: {
       handler: function(req, res) {
         //render view
-        res.render('progress/index');
+        res.render('progress/index', { user: req.user });
       }
     }
   }

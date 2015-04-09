@@ -13,6 +13,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var layouts = require('express-ejs-layouts');
+var session = require('express-session');
+
+//authentication modules
+var flash = require('connect-flash'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy;
+
 //var partials = require('express-partials');
 //routes 
 var registerRoutes = require('easynodemvc').Routes.registerRoutes;
@@ -30,6 +37,15 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+/*
+  session and passport authentication
+*/
+app.use(session({ secret: 'firstnet session secret' }));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('layout', 'layout.html');//default to layout

@@ -2,11 +2,18 @@
 <div class="row-fluid">
   <div>
     <div class="col-content">
-
-      <form class="form-signin">
+      <%  var username = '';
+        if (user) { 
+           username = user.username;
+           console.log(user);
+       } %>
+      <form class="form-signin" action="signin" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" class="input-block-level" placeholder="Email address">
-        <input type="password" class="input-block-level" placeholder="Password">
+        <% if(url) { %>
+          <input type="hidden" value="<%= url %>" name="url" />
+        <% } %>
+        <input type="text" name="username" class="input-block-level" placeholder="User Name" value="<%= username %>">
+        <input type="password" name="password" class="input-block-level" placeholder="Password">
         <label class="checkbox">
           <input type="checkbox" value="remember-me">
           Remember me
