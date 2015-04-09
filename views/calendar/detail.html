@@ -16,23 +16,30 @@
           <strong>End:</strong> <%= data.EndTime%><br />
           <strong>Location:</strong> <%= data.Location %><br />
           <br />
-          <strong>Note</strong><br />
-          <%= data.Note %>
-          <br />
-          <strong>Instruction</strong><br />
-          <%= data.Instruction %>
-          <br />
+          <% if (data.Notes) {%>
+            <strong>Notes</strong><br />
+            <%= data.Note %>
+            <br />
+          <% } %>
+          <% if (data.Instructions) {%>
+            <strong>Instruction</strong><br />
+            <%= data.Instruction %>
+            <br />
+          <% } %>
+          
 
           <% if (data.Agenda != null) { %>
           <strong>Agenda</strong>
-          <a href="#"><%= data.Name %>-agenda</a>
+          <small>(<a href="/uploads/<%= data.Agenda %>">click here to download</a>)</small>
           <% } %>
         </p>
+        
         <div class="">
           <small><a href="update?id=<%= data.EventID%>" title="Edit event details">Update</a></small> |
           <small><a href="delete?id=<%= data.EventID%>" title="Edit event details">Delete</a></small> |
           <small><a href="index">Back to Calendar</a></small>
         </div>
+      
       </section>
 
     </div>

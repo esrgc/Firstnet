@@ -3,7 +3,7 @@ config/
 querylog.txt
 api/querylog.txt
 .DS_Store
-
+uploads/
 appConfig.json
 appSettings.js
 npm-debug.log

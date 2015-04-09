@@ -1,0 +1,12 @@
+﻿<div class="text-right user-nav">
+  <% if (typeof user != 'undefined') { %>
+  <span><i class="fa fa-user"></i>&nbsp;<%= user.username %></span>&nbsp;
+  <a class="pull-right" title="Sign out" href="/account/signout">
+    <i class="fa fa-sign-out"></i>
+  </a>
+  <% } else { %>
+    <small class="">
+      <a class="level0" title="Admin sign in" href="/account/signin"><i class="fa fa-sign-in"></i>&nbsp;Sign-in</a>
+    </small>
+  <% } %>
+</div>

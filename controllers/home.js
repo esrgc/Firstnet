@@ -25,7 +25,7 @@ var homeController = Class.define({
     index: {
       handler: function(req, res) {
         //render view
-        res.render('home/index', { user: req.user });
+        res.render('home/index', { user: req.user, message: req.flash('message') });
       }
     }
   }

@@ -14,6 +14,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var layouts = require('express-ejs-layouts');
 var session = require('express-session');
+var multer = require('multer');
 
 //authentication modules
 var flash = require('connect-flash'),
@@ -36,12 +37,18 @@ app.use(favicon(__dirname + '/public/egov/img/icons/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(multer({
+//  dest: '/public/uploads/', //upload dir
+//  rename: function(fieldname, filename) {
+//    return filename + Date.now(); //return name
+//  }
+//}));
 app.use(cookieParser());
 
 /*
   session and passport authentication
 */
-app.use(session({ secret: 'firstnet session secret' }));
+app.use(session({ secret: 'firstnet session secret', resave: false, saveUninitialized: false }));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());

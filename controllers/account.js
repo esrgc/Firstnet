@@ -19,7 +19,7 @@ var accountController = Class.define({
   name: 'account',
   initialize: function() {
     this.extend.prototype.initialize.apply(this, arguments);
-    console.log(this.router);
+    //console.log(this.router);
 
   },
   get: {
@@ -30,7 +30,7 @@ var accountController = Class.define({
         if (typeof url == 'undefined')
           url = '/'; //redirects to home page if no redirection specified.
         //render view
-        var message = req.flash('error');
+        var message = req.flash('message');
         res.render('account/signin', {
           user: req.user,
           message: message,
@@ -41,6 +41,7 @@ var accountController = Class.define({
     signout: {
       handler: function(req, res) {
         req.logout();
+        req.flash('message', 'You have successfully signed out.');
         res.redirect('/');
       }
     }
@@ -60,8 +61,8 @@ var accountController = Class.define({
           console.log(info);
           if (err) { return next(err); }
           if (!user) {
-            req.flash('error', info.message);
-            return res.redirect('signin');
+            req.flash('message', info.message);
+            return res.redirect('signin?url=' + url);
           }
           
           req.logIn(user, function(err) {            

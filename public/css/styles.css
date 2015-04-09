@@ -1,3 +1,6 @@
+h3 {
+  font-size: 1.2em;
+}
 #mdgov_agencyTitle a {
   color: #FFF;
   text-decoration: none;
@@ -70,9 +73,6 @@ img.in-text {
   position: relative;
   width: 80%;
 }
-h3 {
-  font-size: 1.2em;
-}
 /*Calendar styles*/
 div.calendar {
   margin-top: 20px;
@@ -134,4 +134,7 @@ div.calendar .today {
   height: auto;
   margin-bottom: 15px;
   padding: 7px 9px;
+}
+.user-nav {
+  padding: 2px 20px;
 }

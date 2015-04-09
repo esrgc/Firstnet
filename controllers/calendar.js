@@ -12,6 +12,7 @@ var BaseController = lib.BaseController;
 var TYPES = require('tedious').TYPES;
 var validator = require('validator');
 var isAuthenticated = require('../lib/filters/isAuthenticated');
+var multer = require('multer');
 
 var thisController; //local controller scope
 var eventController = Class.define({
@@ -26,9 +27,9 @@ var eventController = Class.define({
   get: {
     index: {
       params: [],
-      middleware: [],
+      middlewares: [],
       handler: function(req, res) {
-        res.render('calendar/index', { user: req.user });
+        res.render('calendar/index', { user: req.user, message: req.flash('message') });
       }
     },
     events: {
@@ -195,16 +196,23 @@ var eventController = Class.define({
       middlewares: [
         {
           callback: isAuthenticated
+        },
+        {
+          callback: multer({
+            dest: './public/uploads/',
+            rename: function(fieldname, filename) {
+              return filename + Date.now(); //return name
+            }
+          })
         }
       ],
       handler: function(req, res) {
         console.log('Create new event. Inserting data...')
         var data = req.body;
+        var files = req.files;
         console.log(data);
-
+        console.log(files);
         //validate start and end time
-
-
         var columns = [], values = [];
 
         for (var i in data) {
@@ -214,6 +222,12 @@ var eventController = Class.define({
           values.push('\'' + p + '\'');
         }
 
+        //read agenda
+        if (typeof files.Agenda != 'undefined') {
+          columns.push('[Agenda]');
+          values.push("'" + files.Agenda.name + "'");
+
+        }
         var query = [
           'Insert into [Event] (' + columns.join(',') + ')\n',
           'Values (' + values.join(',') + ')'
@@ -232,12 +246,21 @@ var eventController = Class.define({
       middlewares: [
         {
           callback: isAuthenticated
+        },
+        {
+          callback: multer({
+            dest: './public/uploads/',
+            rename: function(fieldname, filename) {
+              return filename + Date.now(); //return name
+            }
+          })
         }
       ],
       handler: function(req, res) {
         console.log('Updating event....')
         var data = req.body;
-        //console.log(data);
+        var files = req.files;
+        console.log(files);
 
         var columns = [];
         var id = data.EventID;
@@ -250,7 +273,10 @@ var eventController = Class.define({
           else
             columns.push('[' + i + '] = ' + p);
         }
-
+        //read agenda
+        if (typeof files.Agenda != 'undefined') {
+          columns.push('[Agenda] = \'' + files.Agenda.name + '\'');
+        }
         var query = [
           'UPDATE [Event]\n',
           'SET ',

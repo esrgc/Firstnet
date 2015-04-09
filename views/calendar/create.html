@@ -5,7 +5,7 @@
       <h1>Create Event</h1>
 
       <section id="contentCard">
-        <form action="create" method="post" class="form-horizontal">
+        <form action="create" method="post" class="form-horizontal" enctype="multipart/form-data">
           <div class="control-group">
             <label class="control-label" for="Name">Name</label>
             <div class="controls">
@@ -62,12 +62,12 @@
               <textarea name="Instruction" placeholder="Special instructions" class="input-xlarge"></textarea>
             </div>
           </div>
-          <!-- <div class="control-group">
+           <div class="control-group">
             <label class="control-label" for="Agenda">Agenda</label>
             <div class="controls">
-              <input type="text" name="Agenda" placeholder="Agenda if available"/>
+              <input type="file" name="Agenda" />
             </div>
-          </div>-->
+          </div>
           <!--<div class="control-group">
             <label class="control-label" for=""></label>
             <div class="controls">

@@ -177,10 +177,10 @@
       </div>
       <div id="navBlock" class="row-fluid">
         <div id="mdgov_enterpriseNavigation" class="clearfix">
+         
           <!-- Step 9 : Add Main navigation links -->
           <nav>
             <ul>
-              <li><a href="../home/index" class="level0">Home</a></li>
               <li><a href="../why/index" class="level0">Why FirstNet</a></li>
               <li><a href="../how/index" class="level0">How it gets built</a></li>
               <li><a href="../progress/index" class="level0">Progress</a></li>
@@ -194,6 +194,7 @@
                   padding: 5px; font-size: 1em">
                   <strong>Contact Us!</strong></button>
               </li>
+              
             </ul>
           </nav>
         </div>
@@ -207,28 +208,12 @@
           </div>
         </div>
       </noscript>
-      <div id="primary_content_Block" class="row-fluid content-block">
+      <div id="primary_content_Block" class="row-fluid content-block">         
         <div id="primary_one_col" class="span12">
-          <div class="mdgov_contentWrapper">
-            <div>
-              <% if (typeof user != 'undefined') { %>
-                <span class="pull-right">Signed in as <strong><%= user.username %></strong>
-                  &nbsp;
-                  <a class="btn btn-small btn-default" title="Sign out" href="/account/signout"><i class="fa fa-sign-out">
-                  </i></a>
-                </span>
-              <% } else { %>
-                <span class="pull-right">
-                  <a class="btn btn-small btn-default" title="Admin sign in" href="/account/signin"><i class="fa fa-sign-in">
-                  </i> Sign in</a>
-                </span>
-              <% } %>
-            </div>
+          <div class="mdgov_contentWrapper">     
+            <%-include userNav.html %>       
             <% 
-              console.log('message: ');
               if (typeof message != 'undefined') {  
-              console.log(message);
-            
             %>
                 <p class="text-error text-center"><%= message %></p>
             <% } %>
