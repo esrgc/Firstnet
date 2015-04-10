@@ -1,6 +1,9 @@
 h3 {
   font-size: 1.2em;
 }
+form .error {
+  color: red;
+}
 #mdgov_agencyTitle a {
   color: #FFF;
   text-decoration: none;

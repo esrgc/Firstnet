@@ -8,33 +8,38 @@
         <form action="update" method="post" class="form-horizontal" enctype="multipart/form-data">
           <input type="hidden" name="EventID" value="<%= data.EventID %>" />
           <div class="control-group">
-            <label class="control-label" for="Name">Name</label>
             <div class="controls">
-              <input type="text" name="Name" placeholder="Event Name" value="<%= data.Name %>" />
+              <small class="text-error">(*) indicates required fields</small>
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label" for="Name">Description</label>
+            <label class="control-label" for="Name">Name <span class="text-error">*</span></label>
             <div class="controls">
-              <textarea name="Description" placeholder="Description" class="input-xlarge"><%= data.Description %></textarea>
+              <input type="text" name="Name" placeholder="Event Name" value="<%= data.Name %>" required/>
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label" for="Start">Start</label>
+            <label class="control-label" for="Name">Description <span class="text-error">*</span></label>
+            <div class="controls">
+              <textarea name="Description" placeholder="Description" class="input-xlarge" required><%= data.Description %></textarea>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="Start">Start <span class="text-error">*</span></label>
             <div class="controls">
               <div class="input-append date input-xlarge" id="start-datetime-picker"
                 data-date-format="mm/dd/yyyy HH:ii P">
-                <input class="span10" size="16" type="text" name="Start" value="<%= data.Start %>">
+                <input class="span10" size="16" type="text" name="Start" value="<%= data.Start %>" required>
                 <span class="add-on"><i class="icon-th"></i></span>
               </div>
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label" for="End">End</label>
+            <label class="control-label" for="End">End <span class="text-error">*</span></label>
             <div class="controls">
               <div class="input-append date input-xlarge" id="end-datetime-picker"" 
                 data-date-format="mm/dd/yyyy HH:ii P">
-                <input class="span10" size="16" type="text" name="End" value="<%= data.End %>">
+                <input class="span10" size="16" type="text" name="End" value="<%= data.End %>" required>
                 <span class="add-on"><i class="icon-th"></i></span>
               </div>
             </div>
@@ -48,13 +53,13 @@
           <div class="control-group">
             <label class="control-label" for="Location">Location</label>
             <div class="controls">
-              <input type="text" name="Location" placeholder="Where does this take place?" value="<%= data.Location%>" />
+              <input type="text" name="Location" placeholder="Where does this take place?" value="<%= data.Location%>" class="input-xlarge" maxlength="1000"/>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="Note">Note</label>
             <div class="controls">
-              <textarea name="Note" placeholder="Notes to attendees" class="input-xlarge"><%= data.Note %></textarea>
+              <textarea name="Note" placeholder="Notes to attendees" class="input-xlarge" maxlength="1000"><%= data.Note %></textarea>
             </div>
           </div>
           <div class="control-group">
