@@ -278,7 +278,16 @@ var eventController = Class.define({
           else
             columns.push('[' + i + '] = ' + p);
         }
-        console.log(columns);
+        //console.log(columns);
+
+        var query = [
+          'UPDATE [Event]\n',
+          'SET ',
+          columns.join(','),
+          '\nWHERE [EventID] = ' + id
+        ].join('');
+
+        //console.log(query);
         //read agenda
         if (typeof files.Agenda != 'undefined') {
           console.log('checking for new agenda files...')
@@ -294,32 +303,15 @@ var eventController = Class.define({
                 console.log('Agenda file: ' + fileToDelete + ' has been deleted successfully!');
 
                 //now update database record
-                var query = [
-                 'UPDATE [Event]\n',
-                 'SET ',
-                 columns.join(','),
-                 '\nWHERE [EventID] = ' + id
-                ].join('');
-
-                //console.log(query);
                 repo.executeQuery(query, [], function(data, dataDict) {
                   console.log('Success!');
                   res.redirect('event?id=' + id);
                 });
               });
             }
-
           });
         } else {
           //now update database record
-          var query = [
-           'UPDATE [Event]\n',
-           'SET ',
-           columns.join(','),
-           '\nWHERE [EventID] = ' + id
-          ].join('');
-
-          //console.log(query);
           repo.executeQuery(query, [], function(data, dataDict) {
             console.log('Success!');
             res.redirect('event?id=' + id);
@@ -340,6 +332,10 @@ var eventController = Class.define({
         var repo = thisController.getRepo();
         var data = req.body;
         var id = data.EventID;
+        var query = [
+            'DELETE [Event]\n',
+            'WHERE [EventID] = ' + id
+        ].join('');
 
         //load the old agenda then delete it
         var oldAgenda = 'select [Agenda] from [Event] where [EventID] = ' + id;
@@ -361,13 +357,6 @@ var eventController = Class.define({
               });
             });
           } else {
-            //now update database record
-            var query = [
-             'DELETE [Event]\n',
-             'WHERE [EventID] = ' + id
-            ].join('');
-
-            //console.log(query);
             repo.executeQuery(query, [], function(data, dataDict) {
               res.redirect('index');
             });
