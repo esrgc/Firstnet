@@ -21,7 +21,8 @@
     "passport-local": "^1.0.0",
     "serve-favicon": "~2.0.1",
     "tedious": "^1.5.1",
-    "validator": "^3.37.0"
+    "validator": "^3.37.0",
+    "express-session": "^1.11.1"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
