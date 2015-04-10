@@ -278,16 +278,7 @@ var eventController = Class.define({
           else
             columns.push('[' + i + '] = ' + p);
         }
-        //console.log(columns);
-
-        var query = [
-          'UPDATE [Event]\n',
-          'SET ',
-          columns.join(','),
-          '\nWHERE [EventID] = ' + id
-        ].join('');
-
-        //console.log(query);
+        console.log(columns);
         //read agenda
         if (typeof files.Agenda != 'undefined') {
           console.log('checking for new agenda files...')
@@ -303,15 +294,32 @@ var eventController = Class.define({
                 console.log('Agenda file: ' + fileToDelete + ' has been deleted successfully!');
 
                 //now update database record
+                var query = [
+                 'UPDATE [Event]\n',
+                 'SET ',
+                 columns.join(','),
+                 '\nWHERE [EventID] = ' + id
+                ].join('');
+
+                //console.log(query);
                 repo.executeQuery(query, [], function(data, dataDict) {
                   console.log('Success!');
                   res.redirect('event?id=' + id);
                 });
               });
             }
+
           });
         } else {
           //now update database record
+          var query = [
+           'UPDATE [Event]\n',
+           'SET ',
+           columns.join(','),
+           '\nWHERE [EventID] = ' + id
+          ].join('');
+
+          //console.log(query);
           repo.executeQuery(query, [], function(data, dataDict) {
             console.log('Success!');
             res.redirect('event?id=' + id);
@@ -357,6 +365,10 @@ var eventController = Class.define({
               });
             });
           } else {
+            //now update database record
+           
+
+            //console.log(query);
             repo.executeQuery(query, [], function(data, dataDict) {
               res.redirect('index');
             });
