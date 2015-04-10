@@ -13,8 +13,11 @@ var TYPES = require('tedious').TYPES;
 var validator = require('validator');
 var isAuthenticated = require('../lib/filters/isAuthenticated');
 var multer = require('multer');
+var fs = require('fs');
+
 
 var thisController; //local controller scope
+
 var eventController = Class.define({
   extend: BaseController,
   name: 'calendar',
@@ -257,13 +260,15 @@ var eventController = Class.define({
         }
       ],
       handler: function(req, res) {
-        console.log('Updating event....')
+        console.log('Updating event....');
+        var repo = thisController.getRepo();
         var data = req.body;
         var files = req.files;
         console.log(files);
 
         var columns = [];
         var id = data.EventID;
+        //parse data to form query 
         for (var i in data) {
           if (i == 'EventID')//skip eventID
             continue;
@@ -276,22 +281,35 @@ var eventController = Class.define({
         //read agenda
         if (typeof files.Agenda != 'undefined') {
           columns.push('[Agenda] = \'' + files.Agenda.name + '\'');
+
+          //load the old agenda then delete it
+          var oldAgenda = 'select [Agenda] from [Event] where [EventID] = ' + id;
+          repo.executeQuery(oldAgenda, [], function(data, dataDict) {
+            if (data.length == 1) {
+              var fileToDelete = data[0].Agenda;
+              fs.unlink('./public/uploads/' + fileToDelete, function(err) {
+                if (err) console.log(err);
+                console.log('Agenda file: ' + fileToDelete + ' has been deleted successfully!');
+
+                //now update database record
+                var query = [
+                 'UPDATE [Event]\n',
+                 'SET ',
+                 columns.join(','),
+                 '\nWHERE [EventID] = ' + id
+                ].join('');
+
+                //console.log(query);
+                repo.executeQuery(query, [], function(data, dataDict) {
+                  console.log('Success!');
+                  res.redirect('event?id=' + id);
+                });
+              });
+            }
+            
+          });
         }
-        var query = [
-          'UPDATE [Event]\n',
-          'SET ',
-          columns.join(','),
-          '\nWHERE [EventID] = ' + id
-        ].join('');
 
-
-        //console.log(query);
-
-        var repo = thisController.getRepo();
-        repo.executeQuery(query, [], function(data, dataDict) {
-          console.log('Success!');
-          res.redirect('event?id=' + id);
-        });
         //res.redirect('event?id=' + data.EventID);
       }
     },
@@ -302,21 +320,36 @@ var eventController = Class.define({
         }
       ],
       handler: function(req, res) {
-        console.log('Updating event....')
+        console.log('Updating event....');
+        var repo = thisController.getRepo();
         var data = req.body;
         var id = data.EventID;
 
-        var query = [
-           'DELETE [Event]\n',
-           'WHERE [EventID] = ' + id
-        ].join('');
+        //load the old agenda then delete it
+        var oldAgenda = 'select [Agenda] from [Event] where [EventID] = ' + id;
+        repo.executeQuery(oldAgenda, [], function(data, dataDict) {
+          if (data.length == 1) {
+            var fileToDelete = data[0].Agenda;
+            fs.unlink('./public/uploads/' + fileToDelete, function(err) {
+              if (err) console.log(err);
+              console.log('Agenda file: ' + fileToDelete + ' has been deleted successfully!');
+              //now update database record
+              var query = [
+               'DELETE [Event]\n',
+               'WHERE [EventID] = ' + id
+              ].join('');
 
-        console.log(query);
+              //console.log(query);
 
-        var repo = thisController.getRepo();
-        repo.executeQuery(query, [], function(data, dataDict) {
-          res.redirect('index');
+
+              repo.executeQuery(query, [], function(data, dataDict) {
+                res.redirect('index');
+              });
+            });
+          }
+          
         });
+        
       }
     }
   }
