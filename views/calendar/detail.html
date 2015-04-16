@@ -5,9 +5,9 @@
       <h1>Event Details</h1>
 
       <section class="contentCard">
-         
+
         <h2><%= data.Name %> - <small><%= data.Status %></small></h2>
-       
+
         <p>
           <strong>Description:</strong> <%= data.Description %>
           <br />
@@ -18,12 +18,12 @@
           <br />
           <% if (data.Notes) {%>
             <strong>Notes</strong><br />
-            <%= data.Note %>
+          <%= data.Note %>
             <br />
           <% } %>
           <% if (data.Instructions) {%>
             <strong>Instruction</strong><br />
-            <%= data.Instruction %>
+          <%= data.Instruction %>
             <br />
           <% } %>
           
@@ -33,13 +33,13 @@
           <small>(<a href="/uploads/<%= data.Agenda %>">click here to download</a>)</small>
           <% } %>
         </p>
-        
+
         <div class="">
           <small><a href="update?id=<%= data.EventID%>" title="Edit event details">Update</a></small> |
           <small><a href="delete?id=<%= data.EventID%>" title="Edit event details">Delete</a></small> |
           <small><a href="index">Back to Calendar</a></small>
         </div>
-      
+
       </section>
 
     </div>
