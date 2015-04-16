@@ -25,7 +25,9 @@ var aboutController = Class.define({
     index: {
       handler: function(req, res) {
         //render view
-        res.render('why/index', { user: req.user });
+        res.render('why/index', {
+          user: req.user
+        });
       }
     }
   }

@@ -9,7 +9,7 @@ requires base controller (base.js)
 */
 var Class = require('easynodemvc').Class;
 var BaseController = require('easynodemvc').BaseController;
-var passport = require('../lib/authentication');//passport authentication
+var passport = require('../lib/authentication'); //passport authentication
 var flash = require('connect-flash');
 
 var accountController = Class.define({
@@ -54,25 +54,29 @@ var accountController = Class.define({
         var url = req.body.url;
         if (typeof url == 'undefined')
           url = '/';
-        
+
 
         passport.authenticate('local', function(err, user, info) {
           console.log('Authentication info: ')
           console.log(info);
-          if (err) { return next(err); }
+          if (err) {
+            return next(err);
+          }
           if (!user) {
             req.flash('message', info.message);
             return res.redirect('signin?url=' + url);
           }
-          
-          req.logIn(user, function(err) {            
-            if (err) { return next(err); }
+
+          req.logIn(user, function(err) {
+            if (err) {
+              return next(err);
+            }
             console.log('Logging in..');
             res.redirect(url);
           });
         })(req, res, next);
         //passport.authenticate('local', { failureRedirect: 'signin', failureFlash: true });
-        
+
       }
     }
   }

@@ -9,7 +9,7 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),    
+    pkg: grunt.file.readJSON('package.json'),
     less: {
       options: {
         compress: true
@@ -24,45 +24,45 @@ module.exports = function(grunt) {
       options: {
         //separator: ';',
       },
-     
+
       multi: {
         files: {
           'public/js/dist/<%= pkg.name %>-index.js': [
-                'public/js/util/*.js',
-                'public/js/event/index.js',
-                'public/js/event/model/*.js',
-                'public/js/event/collection/*.js',
-                'public/js/event/router/*.js',
-                'public/js/event/view/*.js'
+            'public/js/util/*.js',
+            'public/js/event/index.js',
+            'public/js/event/model/*.js',
+            'public/js/event/collection/*.js',
+            'public/js/event/router/*.js',
+            'public/js/event/view/*.js'
           ],
           'public/js/dist/<%= pkg.name %>-create-event.js': [
-                'public/js/util/*.js',
-                'public/js/event/create.js',
-                'public/js/event/model/*.js',
-                'public/js/event/collection/*.js',
-                'public/js/event/router/*.js',
-                'public/js/event/view/*.js'
+            'public/js/util/*.js',
+            'public/js/event/create.js',
+            'public/js/event/model/*.js',
+            'public/js/event/collection/*.js',
+            'public/js/event/router/*.js',
+            'public/js/event/view/*.js'
           ],
           'public/js/dist/<%= pkg.name %>-update-event.js': [
-                'public/js/util/*.js',
-                'public/js/event/update.js',
-                'public/js/event/model/*.js',
-                'public/js/event/collection/*.js',
-                'public/js/event/router/*.js',
-                'public/js/event/view/*.js'
+            'public/js/util/*.js',
+            'public/js/event/update.js',
+            'public/js/event/model/*.js',
+            'public/js/event/collection/*.js',
+            'public/js/event/router/*.js',
+            'public/js/event/view/*.js'
           ],
           'public/js/dist/<%= pkg.name %>-delete-event.js': [
-                'public/js/util/*.js',
-                'public/js/event/delete.js',
-                'public/js/event/model/*.js',
-                'public/js/event/collection/*.js',
-                'public/js/event/router/*.js',
-                'public/js/event/view/*.js'
+            'public/js/util/*.js',
+            'public/js/event/delete.js',
+            'public/js/event/model/*.js',
+            'public/js/event/collection/*.js',
+            'public/js/event/router/*.js',
+            'public/js/event/view/*.js'
           ]
         }
       }
     },
-   
+
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
