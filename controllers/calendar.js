@@ -36,28 +36,25 @@ var eventController = Class.define({
       }
     },
     events: {
-      params: [
-        {
-          name: 'month',
-          callback: function(req, res, next, value) {
-            if (typeof value == 'undefined')
-              req.month = null;
-            else
-              req.month = value;
-            next();
-          }
-        },
-        {
-          name: 'year',
-          callback: function(req, res, next, value) {
-            if (typeof value == 'undefined')
-              req.year = null;
-            else
-              req.year = value;
-            next();
-          }
+      params: [{
+        name: 'month',
+        callback: function(req, res, next, value) {
+          if (typeof value == 'undefined')
+            req.month = null;
+          else
+            req.month = value;
+          next();
         }
-      ],
+      }, {
+        name: 'year',
+        callback: function(req, res, next, value) {
+          if (typeof value == 'undefined')
+            req.year = null;
+          else
+            req.year = value;
+          next();
+        }
+      }],
       handler: function(req, res) {
         var month = req.month;
         var year = req.year;
@@ -65,18 +62,15 @@ var eventController = Class.define({
         if (typeof repo == 'undefined') {
           throw new Error('Data repository is undefined');
         }
-        repo.executeProcedure('getEvents', [
-          {
-            name: 'month',
-            type: TYPES.Int,
-            value: month
-          },
-          {
-            name: 'year',
-            type: TYPES.Int,
-            value: year
-          }
-        ], function(data, dataDictionary) {
+        repo.executeProcedure('getEvents', [{
+          name: 'month',
+          type: TYPES.Int,
+          value: month
+        }, {
+          name: 'year',
+          type: TYPES.Int,
+          value: year
+        }], function(data, dataDictionary) {
           //console.log(data)
           res.json(data);
         });
@@ -102,13 +96,11 @@ var eventController = Class.define({
         }
         //retrieve event from database
         var repo = thisController.getRepo();
-        repo.executeProcedure('getEvent', [
-          {
-            name: 'id',
-            type: TYPES.Int,
-            value: id
-          }
-        ], function(data, dataDictionary) {
+        repo.executeProcedure('getEvent', [{
+          name: 'id',
+          type: TYPES.Int,
+          value: id
+        }], function(data, dataDictionary) {
           //console.log(data);
           var e = data[0];
           if (typeof e == 'undefined')
@@ -121,21 +113,17 @@ var eventController = Class.define({
       }
     },
     create: {
-      middlewares: [
-        {
-          callback: isAuthenticated
-        }
-      ],
+      middlewares: [{
+        callback: isAuthenticated
+      }],
       handler: function(req, res) {
         res.render('calendar/create', { user: req.user });
       }
     },
     update: {
-      middlewares: [
-        {
-          callback: isAuthenticated
-        }
-      ],
+      middlewares: [{
+        callback: isAuthenticated
+      }],
       handler: function(req, res) {
         var id = req.query.id;
         if (typeof id == 'undefined') {
@@ -143,13 +131,11 @@ var eventController = Class.define({
         }
         //retrieve event from database
         var repo = thisController.getRepo();
-        repo.executeProcedure('getEvent', [
-          {
-            name: 'id',
-            type: TYPES.Int,
-            value: id
-          }
-        ], function(data, dataDictionary) {
+        repo.executeProcedure('getEvent', [{
+          name: 'id',
+          type: TYPES.Int,
+          value: id
+        }], function(data, dataDictionary) {
           //console.log(data);
           var e = data[0];
           if (typeof e == 'undefined')
@@ -163,11 +149,9 @@ var eventController = Class.define({
       }
     },
     'delete': {
-      middlewares: [
-        {
-          callback: isAuthenticated
-        }
-      ],
+      middlewares: [{
+        callback: isAuthenticated
+      }],
       handler: function(req, res) {
         var id = req.query.id;
         if (typeof id == 'undefined') {
@@ -175,13 +159,11 @@ var eventController = Class.define({
         }
         //retrieve event from database
         var repo = thisController.getRepo();
-        repo.executeProcedure('getEvent', [
-          {
-            name: 'id',
-            type: TYPES.Int,
-            value: id
-          }
-        ], function(data, dataDictionary) {
+        repo.executeProcedure('getEvent', [{
+          name: 'id',
+          type: TYPES.Int,
+          value: id
+        }], function(data, dataDictionary) {
           //console.log(data);
           var e = data[0];
           if (typeof e == 'undefined')
@@ -196,19 +178,16 @@ var eventController = Class.define({
   },
   post: {
     create: {
-      middlewares: [
-        {
-          callback: isAuthenticated
-        },
-        {
-          callback: multer({
-            dest: './public/uploads/',
-            rename: function(fieldname, filename) {
-              return filename + Date.now(); //return name
-            }
-          })
-        }
-      ],
+      middlewares: [{
+        callback: isAuthenticated
+      }, {
+        callback: multer({
+          dest: './public/uploads/',
+          rename: function(fieldname, filename) {
+            return filename + Date.now(); //return name
+          }
+        })
+      }],
       handler: function(req, res) {
         console.log('Create new event. Inserting data...')
         var data = req.body;
@@ -216,10 +195,11 @@ var eventController = Class.define({
         console.log(data);
         console.log(files);
         //validate start and end time
-        var columns = [], values = [];
+        var columns = [],
+          values = [];
 
         for (var i in data) {
-          var p = data[i];//take value
+          var p = data[i]; //take value
           columns.push('[' + i + ']');
           p = p.replace("'", "''")
           values.push('\'' + p + '\'');
@@ -246,19 +226,16 @@ var eventController = Class.define({
       }
     },
     update: {
-      middlewares: [
-        {
-          callback: isAuthenticated
-        },
-        {
-          callback: multer({
-            dest: './public/uploads/',
-            rename: function(fieldname, filename) {
-              return filename + Date.now(); //return name
-            }
-          })
-        }
-      ],
+      middlewares: [{
+        callback: isAuthenticated
+      }, {
+        callback: multer({
+          dest: './public/uploads/',
+          rename: function(fieldname, filename) {
+            return filename + Date.now(); //return name
+          }
+        })
+      }],
       handler: function(req, res) {
         console.log('Updating event....');
         var repo = thisController.getRepo();
@@ -270,9 +247,9 @@ var eventController = Class.define({
         var id = data.EventID;
         //parse data to form query 
         for (var i in data) {
-          if (i == 'EventID')//skip eventID
+          if (i == 'EventID') //skip eventID
             continue;
-          var p = data[i];//take value
+          var p = data[i]; //take value
           if (typeof p == 'string')
             columns.push('[' + i + '] = \'' + p + '\'');
           else
@@ -295,10 +272,10 @@ var eventController = Class.define({
 
                 //now update database record
                 var query = [
-                 'UPDATE [Event]\n',
-                 'SET ',
-                 columns.join(','),
-                 '\nWHERE [EventID] = ' + id
+                  'UPDATE [Event]\n',
+                  'SET ',
+                  columns.join(','),
+                  '\nWHERE [EventID] = ' + id
                 ].join('');
 
                 //console.log(query);
@@ -313,10 +290,10 @@ var eventController = Class.define({
         } else {
           //now update database record
           var query = [
-           'UPDATE [Event]\n',
-           'SET ',
-           columns.join(','),
-           '\nWHERE [EventID] = ' + id
+            'UPDATE [Event]\n',
+            'SET ',
+            columns.join(','),
+            '\nWHERE [EventID] = ' + id
           ].join('');
 
           //console.log(query);
@@ -330,19 +307,17 @@ var eventController = Class.define({
       }
     },
     'delete': {
-      middlewares: [
-        {
-          callback: isAuthenticated
-        }
-      ],
+      middlewares: [{
+        callback: isAuthenticated
+      }],
       handler: function(req, res) {
         console.log('Updating event....');
         var repo = thisController.getRepo();
         var data = req.body;
         var id = data.EventID;
         var query = [
-            'DELETE [Event]\n',
-            'WHERE [EventID] = ' + id
+          'DELETE [Event]\n',
+          'WHERE [EventID] = ' + id
         ].join('');
 
         //load the old agenda then delete it
@@ -355,8 +330,8 @@ var eventController = Class.define({
               console.log('Agenda file: ' + fileToDelete + ' has been deleted successfully!');
               //now update database record
               var query = [
-               'DELETE [Event]\n',
-               'WHERE [EventID] = ' + id
+                'DELETE [Event]\n',
+                'WHERE [EventID] = ' + id
               ].join('');
 
               //console.log(query);
@@ -366,7 +341,7 @@ var eventController = Class.define({
             });
           } else {
             //now update database record
-           
+
 
             //console.log(query);
             repo.executeQuery(query, [], function(data, dataDict) {
